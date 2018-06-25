@@ -1,0 +1,25 @@
+body {
+	font-family: arial;
+}
+
+.image {
+	height: 20em;
+}
+
+footer {
+	font-style: italic;
+	font-size: small;
+}
+
+.intro-card-wide.mdl-card {
+  width: 100%;
+}
+
+.intro-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 20em;
+  background: url('images/jack_olga_intro.jpg') center / cover;
+}
+.intro-card-wide > .mdl-card__menu {
+  color: #fff;
+}

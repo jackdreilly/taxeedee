@@ -1,0 +1,31 @@
+{
+ "type": "FeatureCollection", 
+ "features": [
+  {
+   "geometry": {
+    "type": "Point", 
+    "coordinates": [
+     35.514581,
+     33.891208
+    ]
+   }, 
+   "type": "Feature", 
+   "properties": {
+    "city": "Beirut, Lebanon"
+   }
+  }, 
+  {
+   "geometry": {
+    "type": "Point", 
+    "coordinates": [
+     -122.0,
+     37.0
+    ]
+   }, 
+   "type": "Feature", 
+   "properties": {
+    "city": "San Francisco, USA"
+   }
+  }
+ ]
+}
