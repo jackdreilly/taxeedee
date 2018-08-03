@@ -1,0 +1,29 @@
+body {
+	font-family: arial;
+}
+
+.image {
+	height: 20em;
+}
+
+footer {
+	font-style: italic;
+	font-size: small;
+}
+
+.intro-card-wide.mdl-card {
+  width: 100%;
+}
+
+.intro-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 20em;
+  background: url('https://lh3.googleusercontent.com/w8YQtIfo6f6xwlT00t-zmAT8VwSuMJyolcbMSeaMtc3dZ8jGkVeVLTVk3cKJ9uzemdlFNLDhFlrrAhZaskMKOQH4fz-F_JVsAp_JhnLg4Kfx2e2tfcvsigupPLIJfzXIvSQwYRyFoZA=w2400') center / cover;
+}
+.intro-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+#taxeedee-anchor {
+  color: white;
+  text-decoration: none; /* no underline */
+}

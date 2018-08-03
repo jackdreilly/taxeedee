@@ -5,7 +5,7 @@ function initMap() {
         center: { lat: 0, lng: 0 },
         zoom: 1
     });
-    map.data.loadGeoJson("locations.json");
+    map.data.loadGeoJson("http://localhost:8002/countries")
     map.data.addListener('click', function(event) {
         const infoWindow = new google.maps.InfoWindow({
     		content: event.feature.getProperty("city"),
