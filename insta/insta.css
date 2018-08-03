@@ -44,10 +44,10 @@ main {
 }
 
 #dropdown {
-  width: 100px;
+  width: 150px;
   padding: 10px;
   background-color: #000;
-  font-size: 16px;
+  font-size: 25px;
   color: white;
 }
 
