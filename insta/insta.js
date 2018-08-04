@@ -10,7 +10,7 @@ function init() {
     text.dotdotdot({}).data("dotdotdot").restore();
   });
   $("#humburger").click(function(event) {
-    var humburger = document.getElementById("dropdown");
+    var humburger = document.querySelector("#dropdown");
     if (humburger.style.display === "none") {
         humburger.style.display = "block";
     } else {
