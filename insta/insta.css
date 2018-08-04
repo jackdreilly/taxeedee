@@ -57,6 +57,11 @@ main {
   border-width: 1px;
 }
 
+a:hover{
+  color: gray;
+}
+
+
 #stream {
   margin-left: auto;
   margin-right: auto;

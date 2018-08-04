@@ -16,6 +16,5 @@ function init() {
     } else {
         humburger.style.display = "none";
     }
-
   });
 }
