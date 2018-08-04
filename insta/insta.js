@@ -9,4 +9,13 @@ function init() {
     text.removeClass("collapse");
     text.dotdotdot({}).data("dotdotdot").restore();
   });
+  $("#humburger").click(function(event) {
+    var humburger = document.querySelector("#dropdown");
+    if (humburger.style.display === "none") {
+        humburger.style.display = "block";
+    } else {
+        humburger.style.display = "none";
+    }
+
+  });
 }

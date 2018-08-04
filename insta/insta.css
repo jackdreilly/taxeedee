@@ -37,10 +37,24 @@ main {
 }
 
 #humburger {
-  width: 30px;
-  height: 25px;
-  margin-right: 50px;
-  margin-top: 5px;
+  position: absolute;
+  width: 5.5vw;
+  height: 5vw;
+  margin-top: 4vw;
+  margin-left: 1vw;
+}
+
+#dropdown {
+  position: absolute;
+  z-index: 10;
+  width: 30vw;
+  padding: 10px;
+  background-color: #000;
+  font-size: 4vw;
+  color: white;
+  border-style: none solid solid none;
+  border-color: gray;
+  border-width: 1px;
 }
 
 #stream {
