@@ -75,8 +75,8 @@ header {
 }
 
 .post {
+  position: relative;
   padding-bottom: 10px;
-  background-color: white;
   margin: 10px;
   border-radius: 5px;
   box-shadow: #9cafe6 2px 2px 8px 0px;
@@ -90,6 +90,22 @@ header {
   text-align: center;
   margin: 5px;
   font-size: 5vw;
+}
+
+.img {
+  position: relative;
+}
+
+.img h3 {
+  position: absolute;
+  bottom: -5%;
+  left: 0px;
+  background-color: #d0d0d075;
+  width: 100%;
+  padding: 5px;
+  font-size: 4vw;
+  font-style: italic;
+  text-shadow: 1px 1px #7d7d7d;
 }
 
 .square-image {
