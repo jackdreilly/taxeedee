@@ -19,8 +19,13 @@
 <<<<<<< HEAD
   <img id="humburger" src='images/humburger_button.png'>
 =======
+<<<<<<< HEAD
   <img id="humburger" src='/images/humburger_button.png'>
 >>>>>>> Removed stupid dsstore and reabase
+=======
+  <img id="humburger" src='../../images/humburger_button.png'>
+>>>>>>> guestbook
+>>>>>>> guestbook
   <header>
     <h1>Taxeedee: 
         <span id="subtitle">Travels of Olga and Jack</span>
@@ -28,15 +33,35 @@
   </header>
     <main>
       <span id="dropdown" style="display:none">
+<<<<<<< HEAD
        <a onclick="location.href='/insta.html'">Home</a></br>
        <a onclick="location.href='/about/about.html'">About Us</a></br>
        <a onclick="location.href='/guestbook/guestbook.html'">Guestbook</a></br>
+=======
+<<<<<<< HEAD
+       <a onclick="location.href='/insta.html'">Home</a></br>
+       <a onclick="location.href='/about/about.html'">About Us</a></br>
+       <a onclick="location.href='/guestbook/guestbook.html'">Guestbook</a></br>
+=======
+       <a onclick="location.href='../'">Home</a></br>
+       <a onclick="location.href='../about'">About Us</a></br>
+       <a onclick="location.href='/'">Guestbook</a></br>
+>>>>>>> guestbook
+>>>>>>> guestbook
     </span>
     <div id="stream">
     <div class="post">
       <h2>Guestbook</h2>
         <img class="square-image" src="../../images/guestbook.png"/>
+<<<<<<< HEAD
       <p>Please leave us a note! It will make our day :)<p>
+=======
+<<<<<<< HEAD
+      <p>Please leave us a note! It will make our day :)<p>
+=======
+      <p>Please leave us a note! It will make our day :) .<p>
+>>>>>>> guestbook
+>>>>>>> guestbook
 </div>
 
   </div>
