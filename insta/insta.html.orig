@@ -16,7 +16,11 @@
   <script type="text/javascript" src="insta.js"></script>
 </head>
 <body onload="init()">
+<<<<<<< HEAD
   <img id="humburger" src='images/humburger_button.png'>
+=======
+  <img id="humburger" src='/images/humburger_button.png'>
+>>>>>>> Removed stupid dsstore and reabase
   <header>
     <h1>Taxeedee: 
         <span id="subtitle">Travels of Olga and Jack</span>
