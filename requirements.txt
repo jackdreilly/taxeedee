@@ -1,0 +1,5 @@
+googleapis-common-protos
+grpcio
+protobuf
+flask>=1
+taxeedee_service

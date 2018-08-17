@@ -1,0 +1,23 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "@polymer/iron-ajax": "^3.0.0-pre.21",
+    "delegated-events": "^1.0.7",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "whatwg-fetch": "^2.0.4"
+  }
+}
