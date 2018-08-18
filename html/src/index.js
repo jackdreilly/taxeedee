@@ -17,7 +17,7 @@ function loadPosts(response) {
 
 const postHtml = `
 <div class="post">
-  <h2 class="title-text"></h2>
+  <div class="post-header"><h2 class="title-text"></h2><span class="post-time time"></span></div>
   <div class="img">
     <img class="square-image" />
     <h3 class="location-text"><span class="city-text"></span>, <span class="country-text"></span></h3>
@@ -58,6 +58,7 @@ function addPost(post) {
   node.setAttribute('data-post_id', post.id);
   node.querySelector('img').setAttribute('src', post.photo.url);
   node.querySelector('.title-text').innerText = post.title;
+  node.querySelector('.post-time').innerText = moment(post.timestamp).calendar();
   node.querySelector('.city-text').innerText = post.location.city;
   node.querySelector('.country-text').innerText = post.location.country;
   node.querySelector('.text').innerHTML = post.content;

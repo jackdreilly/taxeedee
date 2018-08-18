@@ -91,10 +91,13 @@ header {
   padding: 5px;
 }
 
-.post h2 {
+.post .post-header {
   text-align: center;
   margin: 5px;
-  font-size: 5vw;
+}
+
+.post h2 {
+  font-size: 5vw;  
 }
 
 .img {
@@ -177,4 +180,8 @@ header {
  */
 .read-more-container {
   position: relative;
+}
+
+.title-text {
+  display: inline;
 }
