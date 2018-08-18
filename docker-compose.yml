@@ -1,0 +1,14 @@
+version: '3'
+services:
+  tweb:
+    image: "gcr.io/$PROJECT_ID/taxeedee_html"
+    ports:
+     - "5000:5000"
+  mongo:
+    image: "mongo"
+    volumes:
+      - "/tmp/dockerdata:/data/db"
+  server:
+    image: "gcr.io/$PROJECT_ID/taxeedee_db"
+    ports:
+     - "50051:50051"

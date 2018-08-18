@@ -171,3 +171,10 @@ header {
   color: #4e4e4e;
   font-family: Verdana, sans-serif;
 }
+
+/**
+ * A div that needs to be expanded by a Read More button will have this class.
+ */
+.read-more-container {
+  position: relative;
+}
