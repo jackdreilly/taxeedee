@@ -31,11 +31,11 @@ const postHtml = `
 	  <h3>Comments</h3>
     <div class="add-comment">
       <form name="comment_form">
-        <label for="user">Your Name</label>
-        <input name="user" type="text" placeholder="Your Name"></input>
+        <label for="user">Name</label>
+        <input name="user" type="text" placeholder="Your name..."></input>
         <br />
-        <label for="content">Your Comment</label>
-        <input name="content" type="text" placeholder="Your Comment"></input>
+        <label for="content">Comment</label>
+        <input name="content" type="text" placeholder="Add your comment..."></input>
         <br />
         <button class="submit">Submit</button>
       </form>
@@ -70,8 +70,10 @@ function addComments(node, comments) {
 
 const commentHtml = `
 <div class="comment">
-  <h4></h4>
-  <div class="time"></div>
+  <div class="comment-title">
+    <h4></h4>
+    <span class="time"></span>
+  </div>
   <div class="content">
   </div>
 </div>
