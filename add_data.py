@@ -7,7 +7,7 @@ c.add_post(
     country = 'Lebanon',
     url = 'https://lh3.googleusercontent.com/gLOpqEE7ewilIqYjq3rQkRA2cG4MWGBL7_-Ew2ndX8yGM9r7G-NRTlsqE4hgccjU_9bmcD21DlVq6nn-KjydhGuTjbO4DjJps6drEU1M7tE8cl_sZz0TeKiXEYFU3i970Xc1jfblA3E=w600-h315-p-k',
     content = """
-              <p>I am really excited to be writing our first post. We have been putting a lot of love into the website design that it is already a month in our trip and we have yet to make a post. But this is it!
+              <p>I am really excited to be writing our first post. We have been putting a lot of love into the website design that it is already a month in our trip and we have yet to make a post. But this is it! 
               <p>The main motivation behind the entire trip and the event that signified the official deadline for us to have everything ready and packed to go was our friends Tala and Marwan's wedding in Beirut. We have been talking about attending this event for months and it gave us momentum to continue on our journey.
               <div class="img">
                 <img class="square-image" src="https://lh3.googleusercontent.com/-78zqPHmdTQ5MuhDkn4Vx8Si6n3QalOevgPTkacLcTruYWbWYO9UDzEXGxb8uDHEuFs7oP3wgk2MsIzqLbslXVRV4m0Xy-eBFcmohhHObFKV9IcEdoBWE2drB2hOHCEz_HLLl10DFCw=w600-h315-p-k" />
