@@ -36,7 +36,7 @@ const postHtml = `
   <div class="text-container read-more-container">
     <div class="text collapse">
     </div>
-    <button class="more-text">Expand Caption</button>
+    <button class="more-text">Read More</button>
   </div>
   <div class="comments-container read-more-container">
     <h3>Comments</h3>
