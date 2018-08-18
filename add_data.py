@@ -23,7 +23,7 @@ c.add_post(
               <div class="img">
                 <img class="square-image" src="https://lh3.googleusercontent.com/FWMALQG4p4_ogvp2iJob8veY4aoxPmGYq8GBfTzQsBRESWmjjVqKOXr65vwF_-ELWwOCziaTCWACeLj3Ai-9cKCWmkv5P_RmI2JXUd9NKt-qfWEL-WAB9nOOpnejRim6YAYZyzJUWlM=w600-h315-p-k" />
                 <h3 class="location-text">Beirut, Lebanon</h3></div>
-              <p>Lebanon in general has a Mediterranean and western vibe to it, and the food was absolutely delicious! Olga could not get enough <a href='https://en.wikipedia.org/wiki/Manakish'>Manouche</a> which can be eaten for breakfast, lunch and dinner! Jack's favorite time of day was breakfast where there was a plethora of chickpeas recipes, meats and yogurt.
+              <p>Lebanon in general has a Mediterranean and western vibe to it, and the food was absolutely delicious! Olga could not get enough <a href='https://en.wikipedia.org/wiki/Manakish'>Manouche</a> which can be eaten for breakfast, lunch and dinner! Jack's favorite time of day was breakfast where there was a plethora of chickpeas recipes, meats and yogurt. And of course we could not stay away from the unlimited supply of shawerma (probably one in every corner)! 
               <div class="img">
                 <img class="square-image" src="https://lh3.googleusercontent.com/anFPIPHW09VeK2OkUYlBHM20s-LX1ePoo6SEo2xAMRCtOuxTS1Iw2zdzdW655uuW-8LERzX4yB8gZKxwGWGGi6rALku-mFGDd7D32-wfT8ImuR_JhVYp-Gx4EtZ-y3EN2VHz9PUQLG0=w600-h315-p-k" />
                 <h3 class="location-text">Armenian District, Lebanon</h3></div>
