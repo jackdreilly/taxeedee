@@ -17,7 +17,18 @@ function loadPosts(response) {
 
 const postHtml = `
 <div class="post">
-  <div class="post-header"><h2 class="title-text"></h2><span class="post-time time"></span></div>
+  <div class="post-header">
+    <h2 class="title-text">
+    </h2>
+    <span class="post-time time">
+    </span>
+    <span class="stars">
+      <span class="num-stars">
+      </span> 
+      Stars
+      <button class="star-post-button">Star</button>
+    </span>
+  </div>
   <div class="img">
     <img class="square-image" />
     <h3 class="location-text"><span class="city-text"></span>, <span class="country-text"></span></h3>
@@ -62,6 +73,7 @@ function addPost(post) {
   node.querySelector('.city-text').innerText = post.location.city;
   node.querySelector('.country-text').innerText = post.location.country;
   node.querySelector('.text').innerHTML = post.content;
+  node.querySelector('.num-stars').innerText = post.stars;
   addComments(node.querySelector('.comments'), post.comments);
   addPostNode(node);
 }
@@ -101,6 +113,10 @@ function handleAddCommentResponse(target, response) {
   addComments(commentsNode, response.comments);
 }
 
+function handleStarPostResponse(target, response) {
+  target.closest('.post').querySelector('.num-stars').innerText = response.stars;
+}
+
 function postId(node) {
   return node.closest('.post').dataset.post_id;
 }
@@ -126,12 +142,31 @@ function listenForComments() {
   });
 }
 
+function listenForStars() {
+  on('click', '.star-post-button', event => {
+    const target = event.currentTarget;
+    event.preventDefault();
+    fetch('/star_post', {
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        'post_id': postId(target),
+      })
+    })
+      .then(response => response.json())
+      .then(response => handleStarPostResponse(target, response));
+  });
+}
+
 
 window.onload = () => {
   fetch('/posts')
       .then(response => response.json())
       .then(loadPosts);
   listenForComments();
+  listenForStars();
   on('click', '.more-text', e => {
     $(e.currentTarget).hide();
     const text = $(e.currentTarget).closest(".read-more-container").find(".collapse");

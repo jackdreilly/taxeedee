@@ -188,6 +188,6 @@ header {
   position: relative;
 }
 
-.title-text {
+.title-text, .stars {
   display: inline;
 }
