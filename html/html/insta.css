@@ -172,6 +172,9 @@ header {
   font-family: Verdana, sans-serif;
 }
 
-.text-container, .comments-container {
+/**
+ * A div that needs to be expanded by a Read More button will have this class.
+ */
+.read-more-container {
   position: relative;
 }
