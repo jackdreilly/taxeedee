@@ -80,7 +80,6 @@ header {
 }
 
 .post {
-  position: relative;
   padding-bottom: 10px;
   margin: 10px;
   border-radius: 5px;
@@ -104,10 +103,11 @@ header {
   position: relative;
 }
 
-.img h3 {
+.location-text {
   position: absolute;
   bottom: -5%;
   left: 0px;
+  box-sizing: border-box;
   background-color: #d0d0d075;
   width: 100%;
   padding: 5px;
@@ -126,7 +126,11 @@ header {
 
 .comments-container h3{
   font-size: 16px;
-  margin-top: 0px;
+  background-color: #d0d0d075;
+  padding: 4px;
+  font-size: 4vw;
+  font-style: italic;
+  text-shadow: 1px 1px #7d7d7d;
 }
 
 .submit{
@@ -143,7 +147,9 @@ header {
   bottom: 10px;
   right: 10px;
   border-style: solid;
+  border-radius: 5px;
   border-width: 1px;
+  background-color: #d6d4d4
 }
 
 #subtitle {
