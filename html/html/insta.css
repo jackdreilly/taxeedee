@@ -117,6 +117,24 @@ header {
   width: 100%;
 }
 
+.post {
+  position: relative;
+}
+
+.comments-container h3{
+  font-size: 16px;
+  margin-top: 0px;
+}
+
+.submit{
+  color: white;
+  background-color: #231dce;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #231dce;
+}
+
 .more-text {
   position: absolute;
   bottom: 10px;
@@ -129,7 +147,27 @@ header {
   font-style: italic;
 }
 
-.text-container, .comments-container {
-  position: relative;
+.add-comment{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
 }
 
+.comment h4 {
+  font-size: 14px;
+  margin-bottom: 1px;
+  font-family: Verdana, sans-serif;
+}
+
+.time {
+  font-size: 12px;
+  font-style: italic;
+  color: #808080;
+  margin-left: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.content {
+  font-size: 13px;
+  color: #4e4e4e;
+  font-family: Verdana, sans-serif;
+}
