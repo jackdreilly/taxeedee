@@ -70,10 +70,10 @@ function addComments(node, comments) {
 
 const commentHtml = `
 <div class="comment">
-  <div class="comment-title">
-    <h4></h4>
+  <h4>
+    <span class="comment-title"></span>
     <span class="time"></span>
-  </div>
+  </h4>
   <div class="content">
   </div>
 </div>
@@ -81,7 +81,7 @@ const commentHtml = `
 
 function addComment(topNode, comment) {
 	const node = parseHtml(commentHtml);
-	node.querySelector('h4').innerText = comment.name;
+	node.querySelector('.comment-title').innerText = comment.name;
 	node.querySelector('.content').innerText = comment.comment;
 	node.querySelector('.time').innerText = moment(comment.timestamp).calendar();
 	topNode.appendChild(node);
