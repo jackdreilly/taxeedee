@@ -171,3 +171,7 @@ header {
   color: #4e4e4e;
   font-family: Verdana, sans-serif;
 }
+
+.text-container, .comments-container {
+  position: relative;
+}
