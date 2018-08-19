@@ -160,6 +160,26 @@ function listenForStars() {
   });
 }
 
+function setupExpander() {
+  on('click', '.more-text', e => {
+    $(e.currentTarget).hide();
+    const text = $(e.currentTarget).closest(".read-more-container").find(".collapse");
+    text.removeClass("collapse");
+    text.dotdotdot({}).data("dotdotdot").restore();
+  });
+}
+
+function setupHumburger() {
+  on('click', '#humburger', event => {
+    var humburger = document.querySelector("#dropdown");
+    if (humburger.style.display === "none") {
+        humburger.style.display = "block";
+    } else {
+        humburger.style.display = "none";
+    }
+  });
+}
+
 
 window.onload = () => {
   fetch('/posts')
@@ -167,18 +187,6 @@ window.onload = () => {
       .then(loadPosts);
   listenForComments();
   listenForStars();
-  on('click', '.more-text', e => {
-    $(e.currentTarget).hide();
-    const text = $(e.currentTarget).closest(".read-more-container").find(".collapse");
-    text.removeClass("collapse");
-    text.dotdotdot({}).data("dotdotdot").restore();
-  });
-  $("#humburger").click(function(event) {
-    var humburger = document.querySelector("#dropdown");
-    if (humburger.style.display === "none") {
-        humburger.style.display = "block";
-    } else {
-        humburger.style.display = "none";
-    }
-  });  
+  setupHumburger();
+  setupExpander();
 };
