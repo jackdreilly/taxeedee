@@ -24,17 +24,19 @@ const postHtml = `
     </h2>
     <span class="post-time time">
     </span>
-    <span class="stars">
-      <span class="num-stars">
-      </span> 
-      Stars
-      <button class="star-post-button">Star</button>
-    </span>
   </div>
   <div class="img">
     <img class="square-image" />
     <h3 class="location-text"><span class="city-text"></span>, <span class="country-text"></span></h3>
   </div>
+  <div class="stars">
+      <button class="star-post-button">
+        <img id="star-image" />
+        Star it!</button>
+          <span class="num-stars">
+          </span> 
+          Stars
+    </div>
   <div class="text-container read-more-container">
     <div class="text collapse">
     </div>
@@ -81,8 +83,18 @@ function addPost(post) {
   node.querySelector('.country-text').innerText = post.location.country;
   node.querySelector('.text').innerHTML = post.content;
   node.querySelector('.num-stars').innerText = post.stars;
+  node.querySelector('img#star-image').src = getStarUrl(post);
   addComments(node.querySelector('.comments'), post.comments);
   addPostNode(node);
+}
+
+function getStarUrl(post) {
+  if (post.starred){
+    return '/images/star.png'
+  }
+  else {
+    return '/images/empty_star.png'
+  }
 }
 
 function addComments(node, comments) {
@@ -127,6 +139,7 @@ function handleStarPostResponse(target, response) {
       response.stars;
 }
 
+
 function postId(node) {
   return node.closest('.post').dataset.post_id;
 }
@@ -156,6 +169,8 @@ function listenForComments() {
 function listenForStars() {
   on('click', '.star-post-button', event => {
     const target = event.currentTarget;
+    const postNode = target.closest('.post');
+    postNode.querySelector('img#star-image').src = '/images/star.png';
     event.preventDefault();
     fetch('/star_post', {
       method: 'post',

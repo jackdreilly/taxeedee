@@ -46,7 +46,12 @@ def root():
 @app.route('/posts', methods=['GET'])
 def posts():
     print client.get_posts()
-    return _to_json(client.get_posts())
+    post_jsons = json.loads(_to_json(client.get_posts()))
+    star_session = StarSession(session)
+    print(post_jsons)
+    for post in post_jsons['posts']:
+        post['starred'] = star_session.already_starred(post['id'])
+    return json.dumps(post_jsons)
 
 
 @app.route('/comments', methods=['GET'])
