@@ -25,6 +25,10 @@ body {
   grid-template-rows: min-content 1fr min-content;
 }
 
+p {
+  margin-top: 0.5em;
+}
+
 header {
   grid-row: 1;
   grid-column: 1;
@@ -192,6 +196,27 @@ header {
   position: relative;
 }
 
-.title-text, .stars {
+.title-text {
   display: inline;
 }
+
+.star-post-button {
+  border: none;
+  background-color: transparent;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.stars {
+  font-size: 13px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+#star-image {
+  margin-left: 2px;
+  padding-bottom: 5px;
+  vertical-align: middle;
+  width: 23px;
+  height: 23px;
+}
+
