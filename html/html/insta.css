@@ -142,9 +142,13 @@ header {
   border-color: #231dce;
 }
 
+.submit:hover{
+  color: gray;
+}
+
 .more-text {
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   right: 10px;
   border-style: solid;
   border-radius: 5px;
