@@ -12,6 +12,7 @@ function resetEllipses() {
 }
 
 function loadPosts(response) {
+  sortByTimestamp(response.posts);
   response.posts.map(addPost);
   resetEllipses();
 }
@@ -65,6 +66,10 @@ function parseHtml(domString) {
   return html.body.firstChild;
 }
 
+function sortByTimestamp(list) {
+  list.sort((a,b)=> moment(b.timestamp).unix() - moment(a.timestamp).unix());
+}
+
 function addPost(post) {
   const node = parseHtml(postHtml);
   node.setAttribute('data-post_id', post.id);
@@ -81,6 +86,7 @@ function addPost(post) {
 }
 
 function addComments(node, comments) {
+  sortByTimestamp(comments);
   comments.map(comment => addComment(node, comment));
 }
 
