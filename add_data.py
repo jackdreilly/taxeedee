@@ -44,3 +44,17 @@ c.add_post(
                 <h3 class="location-text">Armenian District, Lebanon</h3></div>
             """
 )
+
+c.add_post(
+    title = 'THE Wedding',
+    city = 'Beirut',
+    country = 'Lebanon',
+    url = 'https://lh3.googleusercontent.com/bvUci5JL7x14cLsUo3LQko1cUdStNsRQeRm5C6ZDFlfJ3L5fw95a4Q_BGYoEK8bdKkgH4_G3VO8hAqjv-XGrONeD9ZSMnvA1VzuTer9D6Crs5mdO-DPzUMmhVToQZNA21cd18f44df0=w600-h315-p-k',
+    content = """
+            <p>We were lucky enough to have met wonderful friends in Berkeley. But we are even luckier that we get to share
+            experience like this one with them, Tala and Marwan's wedding in Lebanon. Their wedding took place at the 
+            beginning of July in Beirut and needless to say it was an experience of a lifetime.
+            <p>First of all, it was an opportunity for us to visit Lebanon, a country with so much history and interesting dynamics
+            that would be hard to get to otherwise. 
+            """
+)
