@@ -1,10 +1,11 @@
+import 'whatwg-fetch';
+
 import {fire, off, on} from 'delegated-events';
 import _ from 'lodash';
-import 'whatwg-fetch';
 import moment from 'moment';
 
 function resetEllipses() {
-  $(".collapse").dotdotdot({
+  $('.collapse').dotdotdot({
     height: 120,
     watch: true,
   });
@@ -60,7 +61,7 @@ const postHtml = `
 
 function parseHtml(domString) {
   const parser = new DOMParser();
-  const html = parser.parseFromString(domString, 'text/html');    
+  const html = parser.parseFromString(domString, 'text/html');
   return html.body.firstChild;
 }
 
@@ -69,7 +70,8 @@ function addPost(post) {
   node.setAttribute('data-post_id', post.id);
   node.querySelector('img').setAttribute('src', post.photo.url);
   node.querySelector('.title-text').innerText = post.title;
-  node.querySelector('.post-time').innerText = moment(post.timestamp).calendar();
+  node.querySelector('.post-time').innerText =
+      moment(post.timestamp).calendar();
   node.querySelector('.city-text').innerText = post.location.city;
   node.querySelector('.country-text').innerText = post.location.country;
   node.querySelector('.text').innerHTML = post.content;
@@ -108,13 +110,15 @@ function addPostNode(node) {
 }
 
 function handleAddCommentResponse(target, response) {
-  const commentsNode = target.closest('.comments-container').querySelector('.comments');
+  const commentsNode =
+      target.closest('.comments-container').querySelector('.comments');
   commentsNode.innerHTML = '';
   addComments(commentsNode, response.comments);
 }
 
 function handleStarPostResponse(target, response) {
-  target.closest('.post').querySelector('.num-stars').innerText = response.stars;
+  target.closest('.post').querySelector('.num-stars').innerText =
+      response.stars;
 }
 
 function postId(node) {
@@ -124,12 +128,13 @@ function postId(node) {
 function listenForComments() {
   on('click', 'form[name="comment_form"] button.submit', event => {
     const target = event.currentTarget;
+    expandTarget(target);
     event.preventDefault();
     const form = target.closest('form');
     fetch('/add_post_comment', {
       method: 'post',
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
         'post_id': postId(target),
@@ -137,8 +142,8 @@ function listenForComments() {
         'comment': form.elements.content.value
       })
     })
-      .then(response => response.json())
-      .then(response => handleAddCommentResponse(target, response));
+        .then(response => response.json())
+        .then(response => handleAddCommentResponse(target, response));
   });
 }
 
@@ -149,42 +154,44 @@ function listenForStars() {
     fetch('/star_post', {
       method: 'post',
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
         'post_id': postId(target),
       })
     })
-      .then(response => response.json())
-      .then(response => handleStarPostResponse(target, response));
+        .then(response => response.json())
+        .then(response => handleStarPostResponse(target, response));
   });
+}
+
+function expandTarget(target) {
+  $(target).hide();
+  const text = $(target).closest('.read-more-container').find('.collapse');
+  text.removeClass('collapse');
+  text.dotdotdot({}).data('dotdotdot').restore();
 }
 
 function setupExpander() {
   on('click', '.more-text', e => {
-    $(e.currentTarget).hide();
-    const text = $(e.currentTarget).closest(".read-more-container").find(".collapse");
-    text.removeClass("collapse");
-    text.dotdotdot({}).data("dotdotdot").restore();
+    expandTarget(e.currentTarget);
   });
 }
 
 function setupHumburger() {
   on('click', '#humburger', event => {
-    var humburger = document.querySelector("#dropdown");
-    if (humburger.style.display === "none") {
-        humburger.style.display = "block";
+    var humburger = document.querySelector('#dropdown');
+    if (humburger.style.display === 'none') {
+      humburger.style.display = 'block';
     } else {
-        humburger.style.display = "none";
+      humburger.style.display = 'none';
     }
   });
 }
 
 
 window.onload = () => {
-  fetch('/posts')
-      .then(response => response.json())
-      .then(loadPosts);
+  fetch('/posts').then(response => response.json()).then(loadPosts);
   listenForComments();
   listenForStars();
   setupHumburger();
