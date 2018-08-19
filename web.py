@@ -1,9 +1,26 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 import os
+import json
 import sys
 from google.protobuf import json_format
 sys.path.append('server')
 from taxeedee_service import client as db_client
+
+class StarSession(object):
+  """Limits stars to one per session per post"""
+  def __init__(self, session):
+    super(StarSession, self).__init__()
+    self.session = session
+    if 'stars' not in self.session:
+      self.session['stars'] = json.dumps([])
+
+  def already_starred(self, post_id):
+    return post_id in set(json.loads(self.session['stars']))
+
+  def star_post(self, post_id):
+    posts = set(json.loads(self.session['stars']))
+    posts.add(post_id)
+    self.session['stars'] = json.dumps(list(posts))
 
 
 def _to_json(proto):
@@ -19,7 +36,7 @@ def _static_folder():
 
 client = db_client.Client(_client_addr())
 app = Flask(__name__, static_url_path='', static_folder=_static_folder())
-
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route('/')
 def root():
@@ -59,7 +76,11 @@ def add_post_comment():
 
 @app.route('/star_post', methods=['POST'])
 def star_post():
-    client.star_post(post_id=request.json['post_id'])
+    post_id = request.json['post_id']
+    star_session = StarSession(session)
+    if not star_session.already_starred(post_id):
+      star_session.star_post(post_id)
+      client.star_post(post_id=post_id)
     post = client.get_post(post_id=request.json['post_id'])
     return _to_json(post)
 
