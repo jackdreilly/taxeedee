@@ -10,7 +10,9 @@ c.add_post(
               <p>I am really excited to be writing our first post. We have been putting a lot of love into the website design that it is already a month in our trip and we have yet to make a post. But this is it! 
               <p>The main motivation behind the entire trip and the event that signified the official deadline 
               for us to have everything ready and packed to go was our friends Tala and Marwan's wedding in Beirut. 
-              We have been talking about attending this event for months and it gave us momentum to continue on our journey.
+              We have been talking about attending this event for months and it gave us momentum to continue on our journey. 
+              Tala and Marwan, your wedding was beautiful, your friends fantastic and everyone made sure that we had an 
+              unforgettable experience.
               <div class="img">
                 <img class="square-image" src="https://lh3.googleusercontent.com/-78zqPHmdTQ5MuhDkn4Vx8Si6n3QalOevgPTkacLcTruYWbWYO9UDzEXGxb8uDHEuFs7oP3wgk2MsIzqLbslXVRV4m0Xy-eBFcmohhHObFKV9IcEdoBWE2drB2hOHCEz_HLLl10DFCw=w600-h315-p-k" />
                 <h3 class="location-text">Bmekkine, Lebanon</h3></div>
