@@ -147,9 +147,10 @@ function postId(node) {
 function listenForComments() {
   on('click', 'form[name="comment_form"] button.submit', event => {
     const target = event.currentTarget;
-    expandTarget(target);
     event.preventDefault();
     const form = target.closest('form');
+    expandTarget(
+        form.closest('.comments-container').querySelector('.more-text'));
     fetch('/add_post_comment', {
       method: 'post',
       headers: {
