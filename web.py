@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, session
 import os
 import json
 import sys
+import add_data
 from google.protobuf import json_format
 sys.path.append('server')
 from taxeedee_service import client as db_client
@@ -58,6 +59,10 @@ def posts():
 def comments():
     return _to_json(client.get_comments())
 
+@app.route('/clear_db', methods=['GET'])
+def clear_db():
+    add_data.main()
+    return 'ok'
 
 @app.route('/add_comment', methods=['POST'])
 def add_comment():
