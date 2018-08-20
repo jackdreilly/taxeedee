@@ -13,7 +13,9 @@ WORKDIR /app/static
 RUN cp /tmp/dist/* ./
 RUN rm -rf /tmp/*
 WORKDIR /app
-COPY web.py ./
+RUN pip install --upgrade taxeedee_service
+COPY *.py ./
+COPY posts posts
 ENV STATIC_FOLDER static
 ENV CLIENT_ADDR server:50051
 ENV port 5000

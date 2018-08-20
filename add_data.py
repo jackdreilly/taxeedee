@@ -1,91 +1,12 @@
 from taxeedee_service.client import Client
-c = Client()
-c.clear_db()
-c.add_post(
-    title = 'First Stop: Lebanon',
-    city = 'Beirut',
-    country = 'Lebanon',
-    url = 'https://lh3.googleusercontent.com/gLOpqEE7ewilIqYjq3rQkRA2cG4MWGBL7_-Ew2ndX8yGM9r7G-NRTlsqE4hgccjU_9bmcD21DlVq6nn-KjydhGuTjbO4DjJps6drEU1M7tE8cl_sZz0TeKiXEYFU3i970Xc1jfblA3E=w600-h315-p-k',
-    content = """
-              <p>I am really excited to be writing our first post. We have been putting a lot of love into the website design that it is already a month in our trip and we have yet to make a post. But this is it! 
-              <p>The main motivation behind the entire trip and the event that signified the official deadline 
-              for us to have everything ready and packed to go was our friends Tala and Marwan's wedding in Beirut. 
-              We have been talking about attending this event for months and it gave us momentum to continue on our journey. 
-              Tala and Marwan, your wedding was beautiful, your friends fantastic and everyone made sure that we had an 
-              unforgettable experience. Thank you!
-              <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/-78zqPHmdTQ5MuhDkn4Vx8Si6n3QalOevgPTkacLcTruYWbWYO9UDzEXGxb8uDHEuFs7oP3wgk2MsIzqLbslXVRV4m0Xy-eBFcmohhHObFKV9IcEdoBWE2drB2hOHCEz_HLLl10DFCw=w600-h315-p-k" />
-                <h3 class="location-text">Bmekkine, Lebanon</h3></div>
-              <p>Lebanon is a city with some insane amount of history. We visited Byblos, that is one of the oldest cities 
-              in the world, as it has been continuously inhabited for the past 7,000 years! The city of Beirut was very 
-              unique and the civil war it went through in the 70s-90s has definitely left an impact (you could actually see 
-              the bullet holes on the sides of the buildings!). However, these days Beirut has been known as one of the 
-              safest cities, so do not hesitate to visit! The architecture and vibe of the city was stunning. 
-              <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/m1RyM4iGHCRZjg2cdS93sZxZlXV-LTGjKpSkcUreg3L4rdoF2_RP352VSdm7ZBOxVGwIdKgvYM8kT5Q99ANhKB1dAe6D5yrFtRbY621OuqzmlF2fM8lyu9HyWuhQDlrGDnjSbLRHNMA=w600-h315-p-k" />
-                <h3 class="location-text">Byblos, Lebanon</h3></div>
-              <p>There are so many different districts in the city that are massively different from each other ranging 
-              from hipster areas (Mar Michael, Gemmayzeh), to the Armenian district and various Christian and Muslim oriented 
-              areas throughout the city. This diversity played out in the nightlife as well where parties went all night long 
-              from underground bomb selter clubs (thank you Wael for showing us a good time!) to fancy rooftop night clubs!
-              <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/sk1wI_9-mIfjFrD2JRnVD2OEHKeWJSwtQ7PpYqJ23xRILOv3uuKyjyjD19X-lcv-jdA7SEOoEEBiJUhLy3AL51c0LyzPWL4CQvjAfShZVHHiyBmkQcpqToH81D5m8Dop0gAla_vvtBk=w600-h315-p-k" />
-                <h3 class="location-text">Beirut, Lebanon</h3></div>
-              <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/FWMALQG4p4_ogvp2iJob8veY4aoxPmGYq8GBfTzQsBRESWmjjVqKOXr65vwF_-ELWwOCziaTCWACeLj3Ai-9cKCWmkv5P_RmI2JXUd9NKt-qfWEL-WAB9nOOpnejRim6YAYZyzJUWlM=w600-h315-p-k" />
-                <h3 class="location-text">Beirut, Lebanon</h3></div>
-              <p>Lebanon in general has a Mediterranean and western vibe to it, and the food was absolutely delicious! Olga 
-              could not get enough <a href='https://en.wikipedia.org/wiki/Manakish'>Manouche</a> which can be eaten for 
-              breakfast, lunch and dinner! Jack's favorite time of day was breakfast where there was a plethora of chickpeas 
-              recipes, meats and yogurt. And of course we could not stay away from the unlimited supply of shawerma (probably 
-              one in every corner)! 
-              <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/anFPIPHW09VeK2OkUYlBHM20s-LX1ePoo6SEo2xAMRCtOuxTS1Iw2zdzdW655uuW-8LERzX4yB8gZKxwGWGGi6rALku-mFGDd7D32-wfT8ImuR_JhVYp-Gx4EtZ-y3EN2VHz9PUQLG0=w600-h315-p-k" />
-                <h3 class="location-text">Armenian District, Lebanon</h3></div>
-            """
-)
+import glob
+import parse_post
 
-c.add_post(
-    title = 'Lebanese Wedding',
-    city = 'Beirut',
-    country = 'Lebanon',
-    url = 'https://lh3.googleusercontent.com/bvUci5JL7x14cLsUo3LQko1cUdStNsRQeRm5C6ZDFlfJ3L5fw95a4Q_BGYoEK8bdKkgH4_G3VO8hAqjv-XGrONeD9ZSMnvA1VzuTer9D6Crs5mdO-DPzUMmhVToQZNA21cd18f44df0=w600-h315-p-k',
-    content = """
-            <p>We were lucky enough to have met wonderful friends in Berkeley. But we are even luckier that we get to share
-            experience like this one with them, Tala and Marwan's wedding in Lebanon. Their wedding took place at the 
-            beginning of July in Beirut and needless to say it was an experience of a lifetime.
-            <p>First of all, it was an opportunity for us to visit Lebanon, a country with so much history and interesting dynamics
-            that was not on our radar when planning this trip. We made a full overview post on that trip so if you are interested
-            in reading more about beautiful Lebanon scroll to that one (First Stop: Lebanon)! 
-            <p>Well back to the wedding... It was such a pleasure to take this trip and spend time with dear old friends from Berkeley
-            but also make so many new ones! The event took place at a really nice resort in Swanlake and yes there 
-            was a swan lake! We all cleaned up nicely and waited to be amazed.
-            <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/zbixxjZi-lhMQgNvEmMV5bWJuJHYu7uBSki7St2Q8QTMYbdRqQRDTNoQkeQhvJI85Kf4NJfaDkSrgQtuwd1Ie5k894aFAF-6r3_qLqX5lnQTZsq_CqvYUBpTqHvold9RkKyT000gdQ4=w600-h315-p-k" />
-                <h3 class="location-text">SwanLake, Lebanon</h3></div>
-            <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/kVGD9hfnR5KSJEBph7UeVBKnHZx8Z5WguLHhzvNpiSlX8wiUX5WjpRtwsZ5dE1hdvAK1k9gHMWvjEmulnH-1jSAv2b04BzvwY67eLEUHkM7Qrx51v61rY2_MK06yDxpUGhWqXGtYrjA=w600-h315-p-k" />
-                <h3 class="location-text">SwanLake, Lebanon</h3></div>
-            <p>The celebration the bride and groom arranged was everything we could have asked for. Beautiful location, amazing 
-            food from all around the world (yes, that is a giant paella pictured!) 
-            <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/7bbgmQ6MW2dxZYPw3tPFK2Zalb62siiRG64-GmCYzqbVdx8tjlCtmwmc6uucix_sHIl5x2bXQr9JrBZgBQhIAsALKND1Nrtz2mQQ7pUPkzO8QMUab0c5MKD27cJ4zFMX11LS2d1ZzwQ=w600-h315-p-k" />
-                <h3 class="location-text">SwanLake, Lebanon</h3></div>
-            <p>The djs and live bands made for a party worth remembering. One of the main events was the entrance of the couple, 
-            where Marwan (the groom) came in first accopanied by all his guy friends, a drum circle and lots of cheering 
-            and then we all saw Tala (the bride) walk in with her dad and the party started on the dance floor. Those
-            Lebanese know how to party!
-            <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/2Cvi5Ej-Y88J1ut2qIr33KEuCBxJ9EMzGw38L4duxsV0Dy-_jKkq_VQUT_fCYRKDSmHIezUBD9YQARBkb3KS4Nz_xKWI84CX0_6Ind_zwvT6uyxWjC6ZXQDcbuj874g9MkBBrc1l0VM=w600-h315-p-k" />
-                <h3 class="location-text">SwanLake, Lebanon</h3></div>
-            <p>The djs and live bands made for a party worth remembering. One of the main events was the entrance of the couple, 
-            where Marwan (the groom) came in first accopanied by all his guy friends, a drum circle and lots of cheering 
-            and then we all saw Tala (the bride) walk in with her dad and the party started on the dance floor. Those
-            Lebanese know how to party!
-            <div class="img">
-                <img class="square-image" src="https://lh3.googleusercontent.com/2Cvi5Ej-Y88J1ut2qIr33KEuCBxJ9EMzGw38L4duxsV0Dy-_jKkq_VQUT_fCYRKDSmHIezUBD9YQARBkb3KS4Nz_xKWI84CX0_6Ind_zwvT6uyxWjC6ZXQDcbuj874g9MkBBrc1l0VM=w600-h315-p-k" />
-                <h3 class="location-text">SwanLake, Lebanon</h3></div>
-            
-            
-            """
-)
+def main():
+  c = Client()
+  c.clear_db()
+  for filename in glob.glob('posts/*html'):
+    c.add_post(**parse_post.parse_post(filename))
+
+if __name__ == '__main__':
+  main()
