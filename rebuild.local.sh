@@ -2,6 +2,8 @@
 export PROJECT_ID=taxeedee-212808
 cd backend
 docker-compose down -t 1
+docker pull gcr.io/$PROJECT_ID/taxeedee_db
+docker pull gcr.io/$PROJECT_ID/taxeedee_html
 docker-compose up -d
 cd ../
 virtualenv /tmp/env
