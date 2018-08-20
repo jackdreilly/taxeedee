@@ -46,7 +46,7 @@ c.add_post(
 )
 
 c.add_post(
-    title = 'THE Wedding',
+    title = 'Lebanese Wedding',
     city = 'Beirut',
     country = 'Lebanon',
     url = 'https://lh3.googleusercontent.com/bvUci5JL7x14cLsUo3LQko1cUdStNsRQeRm5C6ZDFlfJ3L5fw95a4Q_BGYoEK8bdKkgH4_G3VO8hAqjv-XGrONeD9ZSMnvA1VzuTer9D6Crs5mdO-DPzUMmhVToQZNA21cd18f44df0=w600-h315-p-k',
@@ -55,6 +55,37 @@ c.add_post(
             experience like this one with them, Tala and Marwan's wedding in Lebanon. Their wedding took place at the 
             beginning of July in Beirut and needless to say it was an experience of a lifetime.
             <p>First of all, it was an opportunity for us to visit Lebanon, a country with so much history and interesting dynamics
-            that would be hard to get to otherwise. 
+            that was not on our radar when planning this trip. We made a full overview post on that trip so if you are interested
+            in reading more about beautiful Lebanon scroll to that one (First Stop: Lebanon)! 
+            <p>Well back to the wedding... It was such a pleasure to take this trip and spend time with dear old friends from Berkeley
+            but also make so many new ones! The event took place at a really nice resort in Swanlake and yes there 
+            was a swan lake! We all cleaned up nicely and waited to be amazed.
+            <div class="img">
+                <img class="square-image" src="https://lh3.googleusercontent.com/zbixxjZi-lhMQgNvEmMV5bWJuJHYu7uBSki7St2Q8QTMYbdRqQRDTNoQkeQhvJI85Kf4NJfaDkSrgQtuwd1Ie5k894aFAF-6r3_qLqX5lnQTZsq_CqvYUBpTqHvold9RkKyT000gdQ4=w600-h315-p-k" />
+                <h3 class="location-text">SwanLake, Lebanon</h3></div>
+            <div class="img">
+                <img class="square-image" src="https://lh3.googleusercontent.com/kVGD9hfnR5KSJEBph7UeVBKnHZx8Z5WguLHhzvNpiSlX8wiUX5WjpRtwsZ5dE1hdvAK1k9gHMWvjEmulnH-1jSAv2b04BzvwY67eLEUHkM7Qrx51v61rY2_MK06yDxpUGhWqXGtYrjA=w600-h315-p-k" />
+                <h3 class="location-text">SwanLake, Lebanon</h3></div>
+            <p>The celebration the bride and groom arranged was everything we could have asked for. Beautiful location, amazing 
+            food from all around the world (yes, that is a giant paella pictured!) 
+            <div class="img">
+                <img class="square-image" src="https://lh3.googleusercontent.com/7bbgmQ6MW2dxZYPw3tPFK2Zalb62siiRG64-GmCYzqbVdx8tjlCtmwmc6uucix_sHIl5x2bXQr9JrBZgBQhIAsALKND1Nrtz2mQQ7pUPkzO8QMUab0c5MKD27cJ4zFMX11LS2d1ZzwQ=w600-h315-p-k" />
+                <h3 class="location-text">SwanLake, Lebanon</h3></div>
+            <p>The djs and live bands made for a party worth remembering. One of the main events was the entrance of the couple, 
+            where Marwan (the groom) came in first accopanied by all his guy friends, a drum circle and lots of cheering 
+            and then we all saw Tala (the bride) walk in with her dad and the party started on the dance floor. Those
+            Lebanese know how to party!
+            <div class="img">
+                <img class="square-image" src="https://lh3.googleusercontent.com/2Cvi5Ej-Y88J1ut2qIr33KEuCBxJ9EMzGw38L4duxsV0Dy-_jKkq_VQUT_fCYRKDSmHIezUBD9YQARBkb3KS4Nz_xKWI84CX0_6Ind_zwvT6uyxWjC6ZXQDcbuj874g9MkBBrc1l0VM=w600-h315-p-k" />
+                <h3 class="location-text">SwanLake, Lebanon</h3></div>
+            <p>The djs and live bands made for a party worth remembering. One of the main events was the entrance of the couple, 
+            where Marwan (the groom) came in first accopanied by all his guy friends, a drum circle and lots of cheering 
+            and then we all saw Tala (the bride) walk in with her dad and the party started on the dance floor. Those
+            Lebanese know how to party!
+            <div class="img">
+                <img class="square-image" src="https://lh3.googleusercontent.com/2Cvi5Ej-Y88J1ut2qIr33KEuCBxJ9EMzGw38L4duxsV0Dy-_jKkq_VQUT_fCYRKDSmHIezUBD9YQARBkb3KS4Nz_xKWI84CX0_6Ind_zwvT6uyxWjC6ZXQDcbuj874g9MkBBrc1l0VM=w600-h315-p-k" />
+                <h3 class="location-text">SwanLake, Lebanon</h3></div>
+            
+            
             """
 )
