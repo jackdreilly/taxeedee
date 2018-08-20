@@ -85,9 +85,12 @@ header {
 
 .post {
   padding-bottom: 10px;
+  padding-top: 6px;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: #9cafe6 2px 2px 8px 0px;
+  box-shadow: #4e5b82 2px 2px 8px 0px;
+  margin-bottom: 40px;
+  background-color: white;
 }
 
 .text {
@@ -122,6 +125,10 @@ header {
 
 .square-image {
   width: 100%;
+/*  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;*/
 }
 
 .post {
@@ -167,6 +174,15 @@ header {
 .add-comment{
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+  padding-left: 5px;
+}
+
+input {
+  background-color: whitesmoke;
+}
+
+label {
+  margin-right: 3px;
 }
 
 .comment h4 {
