@@ -61,7 +61,7 @@ def comments():
 
 @app.route('/clear_db', methods=['GET'])
 def clear_db():
-    add_data.main()
+    add_data.main(client)
     return 'ok'
 
 @app.route('/add_comment', methods=['POST'])
