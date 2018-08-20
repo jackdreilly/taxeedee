@@ -177,6 +177,14 @@ header {
   padding-left: 5px;
 }
 
+input {
+  background-color: whitesmoke;
+}
+
+label {
+  margin-right: 3px;
+}
+
 .comment h4 {
   font-size: 14px;
   margin-bottom: 1px;
