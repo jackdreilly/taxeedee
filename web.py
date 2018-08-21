@@ -7,6 +7,23 @@ from google.protobuf import json_format
 sys.path.append('server')
 from taxeedee_service import client as db_client
 
+class Username(object):
+    """docstring for Username"""
+    def __init__(self, session):
+        super(Username, self).__init__()
+        self.session = session
+
+    def update_name(self, name):
+        print 'setting name to', name
+        self.session['name'] = name
+
+    def has_name(self):
+        return 'name' in self.session
+
+    def name(self):
+        return self.session['name']
+
+
 class StarSession(object):
   """Limits stars to one per session per post"""
   def __init__(self, session):
@@ -36,6 +53,7 @@ def _static_folder():
     return os.environ.get('STATIC_FOLDER', 'html/dist/')
 
 client = db_client.Client(_client_addr())
+username = Username(session)
 app = Flask(__name__, static_url_path='', static_folder=_static_folder())
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
@@ -43,6 +61,11 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 def root():
     return app.send_static_file('insta.html')
 
+@app.route('/myname', methods=['GET'])
+def myname():
+    if username.has_name():
+        return jsonify({'name': username.name()})
+    return jsonify({})
 
 @app.route('/posts', methods=['GET'])
 def posts():
@@ -66,6 +89,7 @@ def clear_db():
 
 @app.route('/add_comment', methods=['POST'])
 def add_comment():
+    username.update_name(request.json['name'])
     client.add_comment(
         name=request.json['name'],
         comment=request.json['comment'],
@@ -75,6 +99,7 @@ def add_comment():
 
 @app.route('/add_post_comment', methods=['POST'])
 def add_post_comment():
+    username.update_name(request.json['name'])    
     client.add_post_comment(
         name=request.json['name'],
         post_id=request.json['post_id'],

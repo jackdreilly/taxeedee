@@ -3,6 +3,33 @@ import _ from 'lodash';
 import 'whatwg-fetch';
 import moment from 'moment';
 
+class Username {
+  constructor() {
+    this.name = undefined
+    const self = this;
+    fetch('/myname').then(response => response.json())
+      .then(response => {
+        if ('name' in response) {
+          self.setName(response.name);
+        }
+      });
+  }
+
+  setName(name) {
+    this.name = name;
+    this.refresh();
+  }
+
+  refresh() {
+    if (this.name === undefined) {
+      return;
+    }
+    for (var input of document.querySelectorAll('input[name="user"]')) {
+      input.value = this.name;
+    }
+  }
+}
+
 function parseHtml(domString) {
   const parser = new DOMParser();
   const html = parser.parseFromString(domString, 'text/html');    
@@ -10,7 +37,9 @@ function parseHtml(domString) {
 }
 
 function addComments(node, comments) {
+  sortByTimestamp(comments);
   comments.map(comment => addComment(node, comment));
+  username.refresh();
 }
 
 const commentHtml = `
@@ -43,6 +72,7 @@ function listenForComments() {
     const target = event.currentTarget;
     event.preventDefault();
     const form = target.closest('form');
+    username.setName(form.elements.user.value);
     fetch('/add_comment', {
       method: 'post',
       headers: {
@@ -63,6 +93,12 @@ function setupHumburger() {
     document.querySelector('#dropdown').classList.toggle("show");
   };
 }
+
+function sortByTimestamp(list) {
+  list.sort((a,b)=> moment(b.timestamp).unix() - moment(a.timestamp).unix());
+}
+
+const username = new Username();
 
 window.onload = () => {
   const commentsNode = document.querySelector('.comments');

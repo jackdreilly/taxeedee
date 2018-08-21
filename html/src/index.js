@@ -4,6 +4,33 @@ import {fire, off, on} from 'delegated-events';
 import _ from 'lodash';
 import moment from 'moment';
 
+class Username {
+  constructor() {
+    this.name = undefined
+    const self = this;
+    fetch('/myname').then(response => response.json())
+      .then(response => {
+        if ('name' in response) {
+          self.setName(response.name);
+        }
+      });
+  }
+
+  setName(name) {
+    this.name = name;
+    this.refresh();
+  }
+
+  refresh() {
+    if (this.name === undefined) {
+      return;
+    }
+    for (var input of document.querySelectorAll('input[name="user"]')) {
+      input.value = this.name;
+    }
+  }
+}
+
 function resetEllipses() {
   $('.collapse').dotdotdot({
     height: 120,
@@ -15,6 +42,7 @@ function loadPosts(response) {
   sortByTimestamp(response.posts);
   response.posts.map(addPost);
   resetEllipses();
+  username.refresh();
 }
 
 const postHtml = `
@@ -100,6 +128,7 @@ function getStarUrl(post) {
 function addComments(node, comments) {
   sortByTimestamp(comments);
   comments.map(comment => addComment(node, comment));
+  username.refresh();
 }
 
 const commentHtml = `
@@ -149,6 +178,7 @@ function listenForComments() {
     const target = event.currentTarget;
     event.preventDefault();
     const form = target.closest('form');
+    username.setName(form.elements.user.value);
     expandTarget(
         form.closest('.comments-container').querySelector('.more-text'));
     fetch('/add_post_comment', {
@@ -208,6 +238,8 @@ function setupHumburger() {
     document.querySelector('#dropdown').classList.toggle("show");
   };
 }
+
+let username = new Username();
 
 window.onload = () => {
   fetch('/posts').then(response => response.json()).then(loadPosts);
