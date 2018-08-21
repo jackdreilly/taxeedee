@@ -32,6 +32,7 @@ p {
 header {
   grid-row: 1;
   grid-column: 1;
+  height: 12vw;
 }
 
 main {
@@ -44,8 +45,8 @@ main {
   position: absolute;
   width: 5.5vw;
   height: 5vw;
-  margin-top: 4vw;
-  margin-left: 1vw;
+  margin-top: 2.5vw;
+  margin-left: 2vw;
 }
 
 #dropdown {
@@ -59,6 +60,14 @@ main {
   border-style: none solid solid none;
   border-color: gray;
   border-width: 1px;
+}
+
+#dropdown {
+  display: none;
+}
+
+#dropdown.show {
+  display: block;
 }
 
 a:hover{
@@ -78,9 +87,9 @@ footer {
   grid-column: 1;
 }
 
-header {
+header h1 {
   text-align: center;
-  font-size: 2.5vw;
+  font-size: 4.5vw;
 }
 
 .post {
@@ -252,5 +261,22 @@ header a:visited {
     text-decoration: inherit;
     color: inherit;
     cursor: auto;
+}
+
+
+/**
+ * Humburger stuff start
+ */
+
+#humburger {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 25px;
+    height: 4px;
+    margin: 5px 0;
+    background-color: white;
 }
 

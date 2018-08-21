@@ -5,10 +5,9 @@ function toggle(value, a, b) {
 }
 
 function setupHumburger() {
-  on('click', '#humburger', event => {
-    const humburger = document.querySelector("#dropdown");
-    humburger.style.display = toggle(humburger.style.display, "none", "block");
-  });
+  document.querySelector("#humburger").onclick = event => {
+    document.querySelector('#dropdown').classList.toggle("show");
+  };
 }
 
 window.onload = () => {

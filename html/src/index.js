@@ -201,16 +201,10 @@ function setupExpander() {
 }
 
 function setupHumburger() {
-  on('click', '#humburger', event => {
-    var humburger = document.querySelector('#dropdown');
-    if (humburger.style.display === 'none') {
-      humburger.style.display = 'block';
-    } else {
-      humburger.style.display = 'none';
-    }
-  });
+  document.querySelector("#humburger").onclick = event => {
+    document.querySelector('#dropdown').classList.toggle("show");
+  };
 }
-
 
 window.onload = () => {
   fetch('/posts').then(response => response.json()).then(loadPosts);
