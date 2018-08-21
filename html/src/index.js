@@ -188,10 +188,13 @@ function listenForStars() {
 }
 
 function expandTarget(target) {
-  $(target).hide();
-  const text = $(target).closest('.read-more-container').find('.collapse');
-  text.removeClass('collapse');
-  text.dotdotdot({}).data('dotdotdot').restore();
+  target.classList.add('hide');
+  const text = target.closest('.read-more-container').querySelector('.collapse');
+  if (text === null) {
+    return;
+  }
+  text.classList.remove('collapse');
+  $(text).dotdotdot({}).data('dotdotdot').restore();
 }
 
 function setupExpander() {
