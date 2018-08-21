@@ -236,3 +236,21 @@ label {
   height: 23px;
 }
 
+/**
+ * Makes links in header not appear different
+ */
+header a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+/**
+ * Makes links in header not appear different
+ */
+header a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
