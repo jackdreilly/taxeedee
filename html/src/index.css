@@ -1,5 +1,6 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: Verdana, sans-serif;
+  font-size: 14px;
 }
 
 header {
@@ -154,7 +155,7 @@ footer {
 }
 
 .add-comment{
-  font-family: 'Open Sans', sans-serif;
+  font-family: Verdana, sans-serif;
   font-size: 14px;
   padding-left: 5px;
 }
@@ -178,7 +179,7 @@ label {
   font-style: italic;
   color: #808080;
   margin-left: 10px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .content {
@@ -201,7 +202,7 @@ label {
 .star-post-button {
   border: none;
   background-color: transparent;
-  font-family: 'Open Sans', sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .stars {
