@@ -2,17 +2,13 @@ FROM gcr.io/taxeedee-212808/grpc_base
 WORKDIR /tmp
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
-COPY html/package.json /tmp/
+COPY html/package* /tmp/
 RUN npm config set registry http://registry.npmjs.org/ && npm install
-COPY html/src /tmp/src
-COPY html/webpack.config.js /tmp/
-RUN node_modules/webpack-cli/bin/cli.js --config webpack.config.js
+COPY html/ /tmp/
+RUN npm run build
 WORKDIR /app/
-COPY html/html static
-WORKDIR /app/static
-RUN cp /tmp/dist/* ./
+RUN cp -rf /tmp/build static
 RUN rm -rf /tmp/*
-WORKDIR /app
 RUN pip install --upgrade taxeedee_service
 COPY *.py ./
 COPY posts posts

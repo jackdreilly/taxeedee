@@ -56,18 +56,6 @@ main {
   border-width: 1px;
 }
 
-#dropdown {
-  display: none;
-}
-
-#dropdown.show {
-  display: block;
-}
-
-a:hover{
-  color: gray;
-}
-
 
 #stream {
   margin-left: auto;
@@ -123,10 +111,6 @@ footer {
 
 .square-image {
   width: 100%;
-/*  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;*/
 }
 
 .post {
@@ -245,7 +229,7 @@ header a:hover {
 /**
  * Makes links in header not appear different
  */
-header a:link {
+header a:link, #dropdown a:link {
     text-decoration: inherit;
     color: inherit;
 }
@@ -253,9 +237,13 @@ header a:link {
 /**
  * Makes links in header not appear different
  */
-header a:visited {
+header a:visited, #dropdown a:visited {
     text-decoration: inherit;
     color: inherit;
+}
+
+#dropdown a:hover{
+  color: gray;
 }
 
 header {
@@ -313,4 +301,8 @@ header {
 
 button.hide {
   display: none;
+}
+
+#app {
+  display: inherit;
 }

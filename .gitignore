@@ -2,6 +2,4 @@
 *.orig
 *.pyc
 .Rhistory
-html/html/guestbook.js
-html/html/about.js
-html/html/main.js
+env/

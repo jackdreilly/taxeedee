@@ -59,7 +59,15 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route('/')
 def root():
-    return app.send_static_file('insta.html')
+    return app.send_static_file('index.html')
+
+@app.route('/about')
+def about():
+    return app.send_static_file('index.html')
+
+@app.route('/guestbook')
+def guestbook():
+    return app.send_static_file('index.html')        
 
 @app.route('/myname', methods=['GET'])
 def myname():

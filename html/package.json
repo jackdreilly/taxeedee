@@ -1,23 +1,21 @@
 {
-  "name": "web",
-  "version": "1.0.0",
-  "description": "",
+  "name": "my-app",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "webpack": "^4.16.4",
-    "webpack-cli": "^3.1.0"
-  },
   "dependencies": {
-    "@polymer/iron-ajax": "^3.0.0-pre.21",
-    "delegated-events": "^1.0.7",
-    "lodash": "^4.17.10",
+    "dompurify": "^1.0.7",
     "moment": "^2.22.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-truncate-html": "^0.1.7",
     "whatwg-fetch": "^2.0.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
