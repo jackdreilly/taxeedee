@@ -7,7 +7,7 @@ services:
   mongo:
     image: "mongo"
     volumes:
-      - "/tmp/dockerdata:/data/db"
+      - "~/tmp/dockerdata:/data/db"
   server:
     image: "gcr.io/$PROJECT_ID/taxeedee_db"
     ports:
