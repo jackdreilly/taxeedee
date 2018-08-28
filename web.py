@@ -95,6 +95,11 @@ def clear_db():
     add_data.main(client)
     return 'ok'
 
+@app.route('/add_post', methods=['GET'])
+def add_post():
+    add_data.main(client=client, filename=request.args.get('path'))
+    return 'ok'
+
 @app.route('/add_comment', methods=['POST'])
 def add_comment():
     username.update_name(request.json['name'])
