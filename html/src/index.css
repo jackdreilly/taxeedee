@@ -310,3 +310,7 @@ button.hide {
 #app {
   display: inherit;
 }
+
+iframe {
+  width: 100%;
+}

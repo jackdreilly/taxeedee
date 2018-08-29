@@ -165,7 +165,9 @@ class Post extends React.Component {
 		    onClick={() => this.setState({expanded:true})}
 		    >Read More</button>			
 			);
-		const htmlObject = {__html: DOMPurify.sanitize(this.props.post.content)};
+		const sanitize = false;
+		const htmlContent = sanitize ? DOMPurify.sanitize(this.props.post.content) : this.props.post.content;
+		const htmlObject = {__html: htmlContent};
 		const truncatedText = this.state.expanded ? (
 			<span 
 	    	dangerouslySetInnerHTML={htmlObject}
