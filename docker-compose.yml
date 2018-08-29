@@ -8,6 +8,10 @@ services:
     image: "mongo"
     volumes:
       - "~/tmp/dockerdata:/data/db"
+  mongo-express:
+    image: "mongo-express"
+    ports:
+      - "8081:8081"     
   server:
     image: "gcr.io/$PROJECT_ID/taxeedee_db"
     ports:

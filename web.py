@@ -179,8 +179,8 @@ def _port():
     return os.environ.get('PORT', 5000)
 
 app.config.update(
-    FAKE_LATENCY_BEFORE = 0.3,
-    FAKE_LATENCY_AFTER = (0.5,2)
+    FAKE_LATENCY_BEFORE = 0.03,
+    FAKE_LATENCY_AFTER = (0.05,.06)
 )
 
 Latency(app)
