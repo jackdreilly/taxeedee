@@ -3,6 +3,7 @@ import os
 import json
 import sys
 import add_data
+import modify_content
 from google.protobuf import json_format
 sys.path.append('server')
 from taxeedee_service import client as db_client
@@ -170,6 +171,9 @@ def star_post():
     post = client.get_post(post_id=request.json['post_id'])
     return _to_json(post)
 
+@app.route('/modify_content')
+def _modify_content():
+    return modify_content.modify_content(client)
 
 def _host():
     return '0.0.0.0'
