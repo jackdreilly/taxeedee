@@ -2,3 +2,4 @@ googleapis-common-protos
 grpcio
 protobuf
 flask>=1
+more-itertools==4.3.0

@@ -98,6 +98,7 @@ footer {
 }
 
 .location-text {
+  color: black;
   position: absolute;
   bottom: -10px;
   left: 0px;
@@ -319,4 +320,9 @@ iframe {
 iframe, .img {
   margin-top: .5em;
   margin-bottom: .5em;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
 }

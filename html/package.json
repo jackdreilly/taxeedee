@@ -7,6 +7,7 @@
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-lazyload": "^2.3.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-truncate-html": "^0.1.7",

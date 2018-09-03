@@ -5,6 +5,7 @@ import moment from 'moment';
 import DOMPurify from 'dompurify';
 import Truncate from 'react-truncate-html';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import LazyLoad from 'react-lazyload';
 
 import './index.css';
 
@@ -146,6 +147,81 @@ function Stars(props) {
 		);
 }
 
+function Photo(props) {
+		return (
+		  <div className="img">
+  			<LazyLoad
+				  height={400}
+				  offset={400}
+				  once
+			  >
+			    <img className="square-image" src={props.url} />
+  		  </LazyLoad>
+		    <h3 className="location-text">
+		      {props.title}
+		    </h3>
+		  </div>
+			);
+}
+
+function Video(props) {
+	return (
+		<iframe
+		  src={props.url}
+		  width={600}
+		  height={400}
+		>
+		</iframe>
+		);
+}
+
+function Paragraph(props) {
+	return (
+		<p
+		dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.text)}}
+		>
+		</p>
+		);
+}
+
+function parseNode(node) {
+	if (node.video) {
+		return (
+			<Video url={node.video.url} />
+			);
+	}
+	if (node.photo) {
+		return (
+			<Photo url={node.photo.url} title={node.photo.title}/>
+			);
+	}
+	return (
+		<Paragraph text={node.paragraph.text} />
+		);
+}
+
+function ToNode(node, i) {
+	return (<span className="node" key={i}>
+	{parseNode(node)}
+	</span>);
+}
+
+function Content(props) {
+	const isStructured = props.post.structuredContent && props.post.structuredContent.nodes.length > 0;
+	const isExpanded = props.expanded;
+	if (isStructured) {
+		const allNodes = props.post.structuredContent.nodes;
+		const nodes = isExpanded ? allNodes : allNodes.slice(0,1);
+		return (<span className="content">{nodes.map(ToNode)}</span>);
+	} else {
+		if (!isExpanded) {
+			return (<Truncate lines={6} dangerouslySetInnerHTML={{__html: props.post.content}} />);
+		} else {
+			return (<span dangerouslySetInnerHTML={{__html: props.post.content}}></span>);
+		}
+	}
+}
+
 class Post extends React.Component {
 
 	constructor(props) {
@@ -163,22 +239,9 @@ class Post extends React.Component {
 		    <button 
 		    className="more-text"
 		    onClick={() => this.setState({expanded:true})}
-		    >Read More</button>			
+		    >Read More</button>
 			);
-		const sanitize = false;
-		const htmlContent = sanitize ? DOMPurify.sanitize(this.props.post.content) : this.props.post.content;
-		const htmlObject = {__html: htmlContent};
-		const truncatedText = this.state.expanded ? (
-			<span 
-	    	dangerouslySetInnerHTML={htmlObject}
-	    	></span>
-			) : (
-    	    <Truncate 
-			    	lines={6} 
-			    	dangerouslySetInnerHTML={htmlObject}
-		    	>
-    	    </Truncate>
-			);
+		const content = (<Content post={this.props.post} expanded={this.state.expanded} />);
 		const commentsElement = (this.props.enableComments === undefined || this.props.enableComments) ? (
 					  <Comments
 		    comments={this.state.comments}
@@ -226,6 +289,11 @@ class Post extends React.Component {
 		) : undefined;
 
 	return (
+		<LazyLoad
+		  height={800}
+		  offset={600}
+		  once
+		  >
 		<div className="post">
 		  <div className="post-header">
 		    <h2 className="title-text">
@@ -235,26 +303,20 @@ class Post extends React.Component {
 		      {moment(this.props.post.timestamp).calendar()}
 		    </span>
 		  </div>
-		  <div className="img">
-		    <img className="square-image" src={this.props.post.photo.url} />
-		    <h3 className="location-text">
-		    	<span className="city-text">
-	    			{this.props.post.location.city}
-		    	</span>, 
-		    	<span className="country-text">
-		    		{this.props.post.location.country}
-		    	</span>
-		    </h3>
-		  </div>
+		  <Photo
+		    url={this.props.post.photo.url}
+		    title={this.props.post.location.city + ", " + this.props.post.location.country}
+		    />
 		  {stars}
 		  <div className="text-container read-more-container">
 		    <div className="text">
-		      {truncatedText}
+		      {content}
 		    </div>
 		    {readMoreButton}
 		  </div>
 		  {commentsElement}
 		</div>		
+		</LazyLoad>
 		);
 	}
 }
@@ -372,6 +434,9 @@ export class Stream extends React.Component {
 	}
 
 	render() {
+		if (this.state.posts.length == 0) {
+			return (<div className="loading">Loading Posts...</div>);
+		}
 		const posts = this.state.posts.map((post, i)=> {
 			return (
 				<Post

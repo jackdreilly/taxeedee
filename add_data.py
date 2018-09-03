@@ -11,7 +11,9 @@ def main(client = None, filename=None):
     for filename in glob.glob('posts/*html'):
       c.add_post(**parse_post.parse_post(filename))
   else:
-    c.add_post(**parse_post.parse_post(filename))
+    parsed = parse_post.parse_post(filename)
+    print parsed
+    c.add_post(**parsed)
 
 if __name__ == '__main__':
   main()
