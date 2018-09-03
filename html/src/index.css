@@ -58,7 +58,6 @@ main {
   border-width: 1px;
 }
 
-
 #stream {
   margin-left: auto;
   margin-right: auto;
@@ -91,7 +90,7 @@ footer {
 }
 
 .post h2 {
-  font-size: 4.5vw;  
+  font-size: 4.5vw;
 }
 
 .img {
@@ -119,7 +118,7 @@ footer {
   position: relative;
 }
 
-.comments-container h3{
+.comments-container h3 {
   font-size: 16px;
   background-color: #d0d0d075;
   padding: 4px;
@@ -128,7 +127,7 @@ footer {
   text-shadow: 1px 1px #7d7d7d;
 }
 
-.submit{
+.submit {
   color: white;
   background-color: #231dce;
   border-style: solid;
@@ -137,7 +136,7 @@ footer {
   border-color: #231dce;
 }
 
-.submit:hover{
+.submit:hover {
   color: gray;
 }
 
@@ -155,7 +154,7 @@ footer {
   font-style: italic;
 }
 
-.add-comment{
+.add-comment {
   font-size: 14px;
   padding-left: 5px;
 }
@@ -220,26 +219,26 @@ header h1 {
 }
 
 header a:hover {
- cursor:pointer;
+  cursor: pointer;
 }
 
 /**
  * Makes links in header not appear different
  */
 header a:link, #dropdown a:link {
-    text-decoration: inherit;
-    color: inherit;
+  text-decoration: inherit;
+  color: inherit;
 }
 
 /**
  * Makes links in header not appear different
  */
 header a:visited, #dropdown a:visited {
-    text-decoration: inherit;
-    color: inherit;
+  text-decoration: inherit;
+  color: inherit;
 }
 
-#dropdown a:hover{
+#dropdown a:hover {
   color: gray;
 }
 
@@ -282,25 +281,27 @@ header {
   box-shadow: inset #9c9748 1px 1px 2px 1px;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width:1000px) {
   header h1 {
     font-size: 50px;
   }
 
   .post h2 {
-    font-size: 40px;  
+    font-size: 40px;
   }
 
   #humburger {
     max-width: 120px;
   }
+
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width:600px) {
   #dropdown {
     width: 55vw;
     font-size: 10vw;
   }
+
 }
 
 button.hide {
@@ -313,4 +314,9 @@ button.hide {
 
 iframe {
   width: 100%;
+}
+
+iframe, .img {
+  margin-top: .5em;
+  margin-bottom: .5em;
 }
