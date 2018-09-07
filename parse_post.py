@@ -27,7 +27,7 @@ def parse_structured_post(filename):
 
 	def parse_node():
 		while True:
-			line = ilines.next().strip()
+			line = ilines.next()
 			if line:
 				break
 		line = line.strip()
@@ -39,9 +39,9 @@ def parse_structured_post(filename):
 		lines = []
 		while True:
 			try:
-				if '### ' in ilines.peek().strip():
+				if '### ' in ilines.peek():
 					break
-				line = ilines.next().strip()
+				line = ilines.next()
 				if len(line) == 0:
 					continue
 				lines.append(line)
