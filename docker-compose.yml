@@ -1,7 +1,7 @@
 version: '3'
 services:
   tweb:
-    image: "gcr.io/$PROJECT_ID/taxeedee_html"
+    image: "gcr.io/$PROJECT_ID/taxeedee_html:working"
     ports:
      - "5000:5000"
   mongo:
@@ -13,6 +13,6 @@ services:
     ports:
       - "8081:8081"     
   server:
-    image: "gcr.io/$PROJECT_ID/taxeedee_db"
+    image: "gcr.io/$PROJECT_ID/taxeedee_db:working"
     ports:
      - "50051:50051"
