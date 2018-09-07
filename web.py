@@ -92,8 +92,9 @@ def _client_addr():
 
 def _static_folder():
     return os.environ.get('STATIC_FOLDER', 'html/dist/')
-
-client = db_client.Client(_client_addr())
+import os
+os.environ["CLIENT_ADDR"] = _client_addr()
+client = db_client.Client()
 username = Username(session)
 app = Flask(__name__, static_url_path='', static_folder=_static_folder())
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
