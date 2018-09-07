@@ -12,10 +12,7 @@ def modify_content(client=None):
   for title, new_post in title_to_new.iteritems():
     if title in title_to_post:
       post = title_to_post[title]
-      if type(new_post['content']) is str:
-        post.content = new_post['content']
-      else:
-        post.structured_content.CopyFrom(new_post['content'])
+      post.structured_content.CopyFrom(new_post['structured_content'])
       post.photo.url = new_post['url']
       client.update_post(post)
       print 'updated post', post.id, post.title

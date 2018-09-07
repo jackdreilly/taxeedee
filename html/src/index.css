@@ -1,7 +1,9 @@
+
 body {
   font-size: 14px;
   font-family: Verdana, sans-serif;
   -webkit-text-size-adjust: 100%;
+  margin: 0;
 }
 
 header {
@@ -19,7 +21,7 @@ main {
 }
 
 /* GRID-BASED LAYOUT */
-body {
+body #root {
   display: grid;
   min-height: 100vh;
   margin: 0;
@@ -80,7 +82,7 @@ footer {
   background-color: white;
 }
 
-.text {
+.read-section {
   padding: 5px;
 }
 
@@ -161,11 +163,35 @@ footer {
 }
 
 input {
-  background-color: whitesmoke;
+  background: none;
+  border: 1px solid grey;
 }
 
-label {
+input:focus {
+  background: white;
+  border: 1px solid grey;
+}
+
+input, textarea {
+  background-color: whitesmoke;
+  font-family: Verdana, sans-serif;
+  border-color: gray;  
+  box-sizing: border-box;
+  margin-bottom: 5px;
+  border-radius: 3px;
+}
+
+textarea {
+  resize: none;
+  width: 70%;
+}
+
+.add-comment label {
   margin-right: 3px;
+  display: inline-table;
+  vertical-align: top;
+  width: 75px;
+  text-align: right;
 }
 
 .comment h4 {
@@ -279,7 +305,6 @@ header {
   margin: auto;
   width: 100%;
   background-color: white;
-  box-shadow: inset #9c9748 1px 1px 2px 1px;
 }
 
 @media screen and (min-width:1000px) {
@@ -326,3 +351,19 @@ iframe, .img {
   text-align: center;
   padding: 20px;
 }
+
+.submit-button {
+  background-color: #464584;
+  color: white;
+  border-radius: 7px;
+  font-size: 15px;
+  padding: 5px;
+  font-weight: bold;  
+}
+
+h3.comments-header {
+  background-color: #464584;
+  color: white;
+  text-shadow: 1px 1px #2b2b2b;
+}
+
