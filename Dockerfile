@@ -13,6 +13,7 @@ RUN rm -rf /tmp/*
 COPY *.py ./
 COPY posts posts
 RUN pip install -e git+https://github.com/jackdreilly/taxeedee_service#egg=taxeedee_service --src ./
+COPY templates templates
 ENV STATIC_FOLDER static
 ENV CLIENT_ADDR server:50051
 ENV port 5000

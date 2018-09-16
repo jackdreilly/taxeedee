@@ -1,9 +1,8 @@
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, render_template, redirect, url_for
 import os
 import json
 import sys
-import add_data
-import modify_content
+import admin_utils
 from google.protobuf import json_format
 sys.path.append('server')
 from taxeedee_service import client as db_client
@@ -132,13 +131,15 @@ def comments():
 
 @app.route('/clear_db', methods=['GET'])
 def clear_db():
-    add_data.main(client)
-    return 'ok'
+    admin_utils.clear_db(client)
+    return redirect(url_for('root'))
 
-@app.route('/add_post', methods=['GET'])
+@app.route('/add_post')
 def add_post():
-    add_data.main(client=client, filename=request.args.get('path'))
-    return 'ok'
+    if 'path' in request.args:
+        admin_utils.add_post(client=client, path=request.args.get('path'))
+        return redirect(url_for('root'))
+    return render_template('add_post.html', paths = admin_utils.post_paths())
 
 @app.route('/add_comment', methods=['POST'])
 def add_comment():
@@ -174,7 +175,9 @@ def star_post():
 
 @app.route('/modify_content')
 def _modify_content():
-    return modify_content.modify_content(client)
+    print admin_utils.modify_content(client)
+    return redirect(url_for('root'))
+
 
 def _host():
     return '0.0.0.0'

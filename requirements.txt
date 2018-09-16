@@ -3,3 +3,4 @@ grpcio
 protobuf
 flask>=1
 more-itertools==4.3.0
+-e git+https://github.com/jackdreilly/taxeedee_service#egg=taxeedee_service
