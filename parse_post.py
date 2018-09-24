@@ -27,21 +27,21 @@ def parse_structured_post(filename):
 
 	def parse_node():
 		while True:
-			line = ilines.next()
+			line = ilines.next().strip()
 			if line:
 				break
 		line = line.strip()
 		splits = line.split('### ')
 		if len(splits) is not 2:
-			raise Exception('Unexpected line ' + line)
+			raise Exception('Unexpected line ' + line + ' of length ' + str(len(line)))
 		header = splits[1]
 		node = content.nodes.add()
 		lines = []
 		while True:
 			try:
-				if '### ' in ilines.peek():
+				if '### ' in ilines.peek().strip():
 					break
-				line = ilines.next()
+				line = ilines.next().strip()
 				if len(line) == 0:
 					continue
 				lines.append(line)
