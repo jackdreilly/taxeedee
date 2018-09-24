@@ -8,4 +8,5 @@ steps:
             '--cache-from', 'gcr.io/$PROJECT_ID/taxeedee_html:latest',
             '.'
         ]
+tags: ["cloud-build"]
 images: ['gcr.io/$PROJECT_ID/taxeedee_html:latest']
