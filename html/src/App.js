@@ -5,6 +5,7 @@ import Dropdown from './Dropdown';
 import Stream from './Stream';
 import AboutUs from './AboutUs';
 import Guestbook from './Guestbook';
+import InstagramBanner from './InstagramBanner';
 
 import './index.css';
 
@@ -37,6 +38,7 @@ class App extends React.Component {
             active={this.state.dropdownActive}
             onClick={() => this.setState({dropdownActive: false})}
           />
+            <InstagramBanner/>
             <Route exact path="/" component={Stream} />
               <Route path="/about" component={AboutUs} />
               <Route path="/guestbook" component={Guestbook} />       
