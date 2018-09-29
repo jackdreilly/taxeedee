@@ -402,3 +402,17 @@ h3.comments-header {
 #taxeedee-link {
   text-decoration: underline;
 }
+
+.post-header {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.post-header:hover {
+  cursor: pointer;
+}
+
+.post-header:hover .title-text {
+  color: gray;
+}

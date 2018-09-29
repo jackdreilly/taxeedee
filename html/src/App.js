@@ -40,8 +40,8 @@ class App extends React.Component {
           />
             <InstagramBanner/>
             <Route exact path="/" component={Stream} />
-              <Route path="/about" component={AboutUs} />
-              <Route path="/guestbook" component={Guestbook} />       
+            <Route path="/about" component={AboutUs} />
+            <Route path="/guestbook" component={Guestbook} />       
         </main>             
         <footer>
           Ταξίδι: Greek for Travel

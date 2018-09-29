@@ -73,6 +73,12 @@ class Post extends React.Component {
       />
     ) : undefined;
 
+  const handler = () => {
+    this.props.onClickHandler(this.props.post.id);
+  }
+
+  const onClickHandler = this.props.onClickHandler === undefined ? undefined : handler;
+
   return (
     <LazyLoad
       height={800}
@@ -80,7 +86,9 @@ class Post extends React.Component {
       once
       >
     <div className="post">
-      <div className="post-header">
+      <div
+      onClick={onClickHandler}
+      className="post-header">
         <h2 className="title-text">
           {this.props.post.title}
         </h2>

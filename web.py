@@ -98,17 +98,12 @@ username = Username(session)
 app = Flask(__name__, static_url_path='', static_folder=_static_folder())
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-@app.route('/')
-def root():
-    return app.send_static_file('index.html')
-
+@app.route('/')    
 @app.route('/about')
-def about():
-    return app.send_static_file('index.html')
-
 @app.route('/guestbook')
-def guestbook():
-    return app.send_static_file('index.html')        
+@app.route('/post/.*')
+def root():
+    return app.send_static_file('index.html')    
 
 @app.route('/myname', methods=['GET'])
 def myname():
@@ -119,6 +114,14 @@ def myname():
 @app.route('/posts', methods=['GET'])
 def posts():
     post_jsons = json.loads(_to_json(client.get_posts()))
+    if 'id' in request.args:
+        post_id = request.args['id']        
+        print 'post_id', post_id
+        single_post = {'posts': []}
+        for post in post_jsons['posts']:
+            if post.id == post_id:
+                single_post['posts'].append(post)
+        post_jsons = single_post
     star_session = StarSession(session)
     for post in post_jsons['posts']:
         post['starred'] = star_session.already_starred(post['id'])

@@ -7,13 +7,20 @@ class Stream extends React.Component {
     super(props);
     this.state = {posts: (props.posts === undefined ? [] : props.posts), name: undefined};
     fetch('/myname').then(response => response.json()).then(response => this.setState({name: response.name}));    
-    if (props.posts === undefined) {
-      fetch('/posts').then(response => response.json()).then(response => {
-        const posts = response.posts.slice();
-        posts.sort((a,b) => {return a.timestamp > b.timestamp ? -1 : 1});
-        this.setState({posts: posts})
-      });
-    }
+    this.fetchPosts();
+  }
+
+  componentDidUpdate(prevProps) {
+  }
+
+  fetchPosts() {
+    const {post_id} = this.match.params;
+    const args = (post_id === undefined) ? undefined : {id: post_id};
+    fetch('/posts', args).then(response => response.json()).then(response => {
+      const posts = response.posts.slice();
+      posts.sort((a,b) => {return a.timestamp > b.timestamp ? -1 : 1});
+      this.setState({posts: posts})
+    });
   }
 
   render() {
@@ -24,6 +31,7 @@ class Stream extends React.Component {
       return (
         <Post
           post={post}
+          onClickHandler={(id) => this.fetchPosts({id: id})}
           name={this.state.name}
           key={post.id}
           enableComments={this.props.enableComments}
