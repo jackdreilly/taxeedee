@@ -2,7 +2,6 @@
 body {
   font-size: 14px;
   font-family: Verdana, sans-serif;
-  -webkit-text-size-adjust: 100%;
   margin: 0;
 }
 
@@ -403,16 +402,20 @@ h3.comments-header {
   text-decoration: underline;
 }
 
-.post-header {
+.post-header-link {
   text-decoration: none;
   color: black;
   display: block;
 }
 
-.post-header:hover {
+.post-header-link .post-header:hover {
   cursor: pointer;
 }
 
-.post-header:hover .title-text {
+.post-header-link .post-header:hover .title-text {
   color: gray;
+}
+
+.clickable {
+  cursor: pointer;
 }

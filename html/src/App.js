@@ -41,7 +41,10 @@ class App extends React.Component {
             <InstagramBanner/>
             <Route exact path="/" component={Stream} />
             <Route path="/about" component={AboutUs} />
-            <Route path="/guestbook" component={Guestbook} />       
+            <Route path="/guestbook" component={Guestbook} />
+            <Route path="/post/:id" render={(props)=> {
+              return <Stream post_id={props.match.params.id} />;
+            }} />   
         </main>             
         <footer>
           Ταξίδι: Greek for Travel

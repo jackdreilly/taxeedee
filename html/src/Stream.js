@@ -6,21 +6,17 @@ class Stream extends React.Component {
   constructor(props) {
     super(props);
     this.state = {posts: (props.posts === undefined ? [] : props.posts), name: undefined};
-    fetch('/myname').then(response => response.json()).then(response => this.setState({name: response.name}));    
+    fetch('/myname').then(response => response.json()).then(response => this.setState({name: response.name}));
     this.fetchPosts();
   }
 
-  componentDidUpdate(prevProps) {
-  }
-
   fetchPosts() {
-    const {post_id} = this.match.params;
-    const args = (post_id === undefined) ? undefined : {id: post_id};
-    fetch('/posts', args).then(response => response.json()).then(response => {
-      const posts = response.posts.slice();
-      posts.sort((a,b) => {return a.timestamp > b.timestamp ? -1 : 1});
-      this.setState({posts: posts})
-    });
+      const url = this.props.post_id === undefined ? '/posts' : `/posts?id=${this.props.post_id}`;
+      fetch(url).then(response => response.json()).then(response => {
+        const posts = response.posts.slice();
+        posts.sort((a,b) => {return a.timestamp > b.timestamp ? -1 : 1});
+        this.setState({posts: posts})
+      });    
   }
 
   render() {
@@ -31,8 +27,8 @@ class Stream extends React.Component {
       return (
         <Post
           post={post}
-          onClickHandler={(id) => this.fetchPosts({id: id})}
           name={this.state.name}
+          link={`/post/${post.id}`}
           key={post.id}
           enableComments={this.props.enableComments}
           enableStars={this.props.enableStars}

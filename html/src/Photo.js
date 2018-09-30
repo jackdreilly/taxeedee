@@ -1,7 +1,32 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 
-function Photo(props) {
+class Photo extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen : false,
+      wasOpened: false,
+    };
+  }
+
+  clickable() {
+  	return this.props.url.includes("googleusercontent");
+  }
+
+  largeUrl() {
+  	const baseUrl = this.props.url.substring(0,this.props.url.length - 3);
+  	const url = `${baseUrl}1800`;
+    return url;
+  }
+
+  render() {
+  	const props = this.props;
+  	const className = this.clickable() ? "square-image clickable" : "square-image";
+  	const onClick = this.clickable() ? ()=> this.setState({isOpen: true, wasOpened: true}) : undefined;
 		return (
 		  <div className="img">
   			<LazyLoad
@@ -9,13 +34,26 @@ function Photo(props) {
 				  offset={400}
 				  once
 			  >
-			    <img alt={props.title} className="square-image" src={props.url} />
+			    <img 
+			    	alt={props.title} 
+			    	className={className}
+			    	onClick={onClick}
+			    	src={this.state.wasOpened ? this.largeUrl() : props.url} />
   		  </LazyLoad>
 		    <h3 className="location-text">
 		      {props.title}
 		    </h3>
+		    {this.state.isOpen && this.clickable() &&
+		    (
+		    	<Lightbox
+		    	  mainSrc={this.largeUrl()}
+		    	  imageCaption={this.props.title}
+		    	  onCloseRequest={() => this.setState({ isOpen: false })} />
+		    	)
+		    }
 		  </div>
 			);
+  }
 }
 
 export default Photo;

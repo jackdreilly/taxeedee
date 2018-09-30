@@ -101,8 +101,8 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 @app.route('/')    
 @app.route('/about')
 @app.route('/guestbook')
-@app.route('/post/.*')
-def root():
+@app.route('/post/<id>')
+def root(*args, **kwargs):
     return app.send_static_file('index.html')    
 
 @app.route('/myname', methods=['GET'])
@@ -115,11 +115,10 @@ def myname():
 def posts():
     post_jsons = json.loads(_to_json(client.get_posts()))
     if 'id' in request.args:
-        post_id = request.args['id']        
-        print 'post_id', post_id
+        post_id = request.args['id']
         single_post = {'posts': []}
         for post in post_jsons['posts']:
-            if post.id == post_id:
+            if post['id'] == post_id:
                 single_post['posts'].append(post)
         post_jsons = single_post
     star_session = StarSession(session)
@@ -135,13 +134,13 @@ def comments():
 @app.route('/clear_db', methods=['GET'])
 def clear_db():
     admin_utils.clear_db(client)
-    return redirect(url_for('root'))
+    return redirect('/')
 
 @app.route('/add_post')
 def add_post():
     if 'path' in request.args:
         admin_utils.add_post(client=client, path=request.args.get('path'))
-        return redirect(url_for('root'))
+        return redirect('/')
     return render_template('add_post.html', paths = admin_utils.post_paths())
 
 @app.route('/add_comment', methods=['POST'])
@@ -179,7 +178,7 @@ def star_post():
 @app.route('/modify_content')
 def _modify_content():
     print admin_utils.modify_content(client)
-    return redirect(url_for('root'))
+    return redirect('/')
 
 
 def _host():
