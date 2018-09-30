@@ -64,9 +64,8 @@ Our plan is to:
           ]
         },
         photo: {
-          url: "https://lh3.googleusercontent.com/r_9AMLGjqJ59y8D5qjIb3-YmDCWEHgaIe1LXqp40ZM471dV1TyG0pZFKWn0bDhfnNyLqT9szzgHqlIFjSfExKVzXjFdF163CvrK47P77K0laHPzWezAGEYy49lV6vgXYAV4LFZbrf5c=w600-h315-p-k"
+          url: "https://lh3.googleusercontent.com/r_9AMLGjqJ59y8D5qjIb3-YmDCWEHgaIe1LXqp40ZM471dV1TyG0pZFKWn0bDhfnNyLqT9szzgHqlIFjSfExKVzXjFdF163CvrK47P77K0laHPzWezAGEYy49lV6vgXYAV4LFZbrf5c=w600"
         },
-        id: "Fake",
         location: {
           city: "Clear Lake, California",
           country: "USA",

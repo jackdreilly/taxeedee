@@ -26,11 +26,12 @@ class Stream extends React.Component {
       return (<div className="loading">Loading Posts...</div>);
     }
     const posts = this.state.posts.map((post, i)=> {
+      const link = post.id === undefined ? undefined : `/post/${post.id}`;
       return (
         <Post
           post={post}
           name={this.state.name}
-          link={`/post/${post.id}`}
+          link={link}
           key={post.id}
           enableComments={this.props.enableComments}
           enableStars={this.props.enableStars}
