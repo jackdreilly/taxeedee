@@ -7,7 +7,9 @@ class Stream extends React.Component {
     super(props);
     this.state = {posts: (props.posts === undefined ? [] : props.posts), name: undefined};
     fetch('/myname').then(response => response.json()).then(response => this.setState({name: response.name}));
-    this.fetchPosts();
+    if (this.props.posts === undefined) {
+      this.fetchPosts();
+    }
   }
 
   fetchPosts() {
