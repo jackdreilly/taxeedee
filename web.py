@@ -174,7 +174,7 @@ def add_post_comment():
         comment=request.get_json()['comment'],
     )
     post = client.get_post(post_id=request.get_json()['post_id'])
-    send_email('new guestbook comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
+    send_email('new comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
                (request.get_json()['post_id'], request.get_json()['name'], request.get_json()['comment']),)
     return _to_json(post)
 
