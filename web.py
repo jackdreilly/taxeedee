@@ -174,8 +174,8 @@ def add_post_comment():
         comment=request.get_json()['comment'],
     )
     post = client.get_post(post_id=request.get_json()['post_id'])
-    send_email('new guestbook comment', 'http://taxeedee.com/post/%s' %
-               request.get_json()['post_id'])
+    send_email('new guestbook comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
+               (request.get_json()['post_id'], request.get_json['name'], request.get_json['comment']))
     return _to_json(post)
 
 
@@ -187,6 +187,8 @@ def star_post():
         star_session.star_post(post_id)
         client.star_post(post_id=post_id)
     post = client.get_post(post_id=request.get_json()['post_id'])
+    send_email('new star', 'http://taxeedee.com/post/%s' %
+               request.get_json()['post_id'])
     return _to_json(post)
 
 
@@ -203,18 +205,24 @@ metrics_client = MetricsClient()
 def photo_clicked():
     metrics_client.photo_clicked(
         request.get_json()['post_id'], request.get_json()['photo'])
+    send_email('photo clicked', 'http://taxeedee.com/post/%s \n%s' %
+               (request.get_json()['post_id']), request.get_json()['photo'])
     return 'ok'
 
 
 @app.route('/api/metrics/v1/post_expanded', methods=["POST"])
 def post_expanded():
     metrics_client.post_expanded(request.get_json()['post_id'])
+    send_email('post expanded', 'http://taxeedee.com/post/%s' %
+               request.get_json()['post_id'])
     return 'ok'
 
 
 @app.route('/api/metrics/v1/comments_expanded', methods=["POST"])
 def comments_expanded():
     metrics_client.comments_expanded(request.get_json()['post_id'])
+    send_email('comment expanded', 'http://taxeedee.com/post/%s' %
+               request.get_json()['post_id'])
     return 'ok'
 
 
@@ -257,6 +265,7 @@ from threading import Thread
 def send_email(title, body):
     if 'DEV' in os.environ.get('TAXEEDEE_ENV', 'DEV'):
         return
+
     def helper(flask_app, title, body):
         with flask_app.app_context():
             msg = Message(
