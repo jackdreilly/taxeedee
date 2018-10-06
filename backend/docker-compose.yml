@@ -1,15 +1,15 @@
 version: '3'
 
+
+
 services:
     mongo:
         image: mongo
+        env_file: ~/.env
         ports:
             - "27019:27017"
     mongo-express:
         image: mongo-express
-        environment:
-            - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_LOGIN}
-            - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}
         depends_on:
             - mongo
         ports:

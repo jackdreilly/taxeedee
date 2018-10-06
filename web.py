@@ -161,6 +161,7 @@ def add_comment():
         name=request.get_json()['name'],
         comment=request.get_json()['comment'],
     )
+    send_email('new guestbook comment', 'http://taxeedee.com/guestbook')
     return _to_json(client.get_comments())
 
 
@@ -173,6 +174,8 @@ def add_post_comment():
         comment=request.get_json()['comment'],
     )
     post = client.get_post(post_id=request.get_json()['post_id'])
+    send_email('new guestbook comment', 'http://taxeedee.com/post/%s' %
+               request.get_json()['post_id'])
     return _to_json(post)
 
 
@@ -234,6 +237,35 @@ app.config.update(
 )
 
 Latency(app)
+
+from flask_mail import Mail, Message
+
+app.config.update(
+    DEBUG=True,
+    # EMAIL SETTINGS
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME='taxeedeetravels@gmail.com',
+    MAIL_PASSWORD=os.environ['EMAIL_PASSWORD'],
+)
+mail = Mail(app)
+
+from threading import Thread
+
+
+def send_email(title, body):
+    def helper(flask_app, title, body):
+        with flask_app.app_context():
+            msg = Message(
+                title,
+                sender='taxeedeetravels+alerts@gmail.com',
+                recipients=['taxeedeetravels+alerts@gmail.com'])
+            msg.body = body
+            mail.send(msg)
+    thr = Thread(target=helper, args=[app, title, body])
+    thr.start()
+
 
 if __name__ == "__main__":
     app.run(debug=False, host=_host(), port=_port())

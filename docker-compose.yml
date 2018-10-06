@@ -1,22 +1,23 @@
 version: '3'
+
 services:
   tweb:
     image: "gcr.io/$PROJECT_ID/taxeedee_html:working"
+    env_file: ~/.env
     ports:
      - "5000:5000"
     depends_on:
       - server
   mongo:
     image: "mongo"
+    env_file: ~/.env
     volumes:
       - "~/tmp/dockerdata:/data/db"
   mongo-express:
     image: "mongo-express"
+    env_file: ~/.env
     ports:
       - "8081:8081"
-    environment:
-      - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_LOGIN}
-      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}
     depends_on:
         - mongo
   server:
