@@ -255,7 +255,7 @@ from threading import Thread
 
 
 def send_email(title, body):
-    if 'DEV' in os.environ.get('TAXEEDEE_ENV'):
+    if 'DEV' in os.environ.get('TAXEEDEE_ENV', 'DEV'):
         return
     def helper(flask_app, title, body):
         with flask_app.app_context():
