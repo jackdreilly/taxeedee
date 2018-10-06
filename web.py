@@ -175,7 +175,7 @@ def add_post_comment():
     )
     post = client.get_post(post_id=request.get_json()['post_id'])
     send_email('new guestbook comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
-               (request.get_json()['post_id'], request.get_json['name'], request.get_json['comment']))
+               (request.get_json()['post_id'], request.get_json()['name'], request.get_json()['comment']),)
     return _to_json(post)
 
 
@@ -206,7 +206,7 @@ def photo_clicked():
     metrics_client.photo_clicked(
         request.get_json()['post_id'], request.get_json()['photo'])
     send_email('photo clicked', 'http://taxeedee.com/post/%s \n%s' %
-               (request.get_json()['post_id']), request.get_json()['photo'])
+               (request.get_json()['post_id'], request.get_json()['photo']),)
     return 'ok'
 
 
