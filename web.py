@@ -231,6 +231,10 @@ def post_clicked():
     metrics_client.post_clicked(request.get_json()['post_id'])
     return 'ok'
 
+@app.route('/metrics')
+def metrics():
+    from metrics.report import render_report
+    return render_report(client=client, metrics_client=metrics_client)
 
 def _host():
     return '0.0.0.0'

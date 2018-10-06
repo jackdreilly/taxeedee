@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/metrics/metrics.css">
+  <title>Metrics</title>
+</head>
+<body>
+<h1>Metrics</h1>
+{% for post_id, post in posts.iteritems() %}
+  <div class="post">
+    <h2>{{post.post.title}}</h2>
+    <img src="{{post.post.photo.url}}" />
+    <div>
+        <div>Comments Expanded: {{post.metrics.comments_expanded or 0}}</div>
+        <div>Post Expanded: {{post.metrics.post_expanded or 0}}</div>
+        <div>Post Clicked: {{post.metrics.post_clicked or 0}}</div>        
+        <div>Stars: {{post.post.stars or 0}}</div>                
+        <div>Comments: {{post.post.comments|length or 0}}</div>                        
+        <div class="photos">
+          <h3>Photos Clicked</h3>
+          {% for photo in post['metrics']['photo_clicked'] %}
+          <div class="photo">
+            <img src="{{photo.url}}" />
+            <div>Views: {{photo.views}}</div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+{% endfor %}
+</body>
+</html>

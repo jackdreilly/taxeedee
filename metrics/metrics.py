@@ -42,3 +42,6 @@ class MetricsClient(object):
 
     def comments_expanded(self, post_id):
         _increment(self.db, post_id, 'comments_expanded')
+
+    def dump(self):
+      return list(self.db.find({}))
