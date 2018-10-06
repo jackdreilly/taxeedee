@@ -7,6 +7,7 @@ import Content from './Content';
 import Comments from './Comments';
 import Stars from './Stars';
 import Photo from './Photo';
+import sendMetric from './Metrics';
 
 class Post extends React.Component {
 
@@ -24,7 +25,10 @@ class Post extends React.Component {
     const readMoreButton = this.state.expanded ? undefined : (
         <button 
         className="more-text"
-        onClick={() => this.setState({expanded:true})}
+        onClick={() => {
+      sendMetric('post_expanded', {post_id: this.props.post.id});
+      this.setState({expanded : true});
+        }}
         >Read More</button>
       );
     const content = (<Content post={this.props.post} expanded={this.state.expanded} />);
@@ -32,6 +36,7 @@ class Post extends React.Component {
             <Comments
         comments={this.state.comments}
         name={this.props.name}
+        onExpand={() => sendMetric('comments_expanded', {post_id: this.props.post.id})}
         onSubmit={(data) => {
           fetch('/add_post_comment', {
             method: 'post',
@@ -91,6 +96,7 @@ class Post extends React.Component {
       <Link 
         to={link}
         className="post-header-link"
+        onClick={() => sendMetric('post_clicked', {post_id: this.props.post.id})}
         >
         {header}
       </Link>
@@ -104,6 +110,7 @@ class Post extends React.Component {
     <div className="post">
       {linkHeader}
       <Photo
+        onClick={() => sendMetric('photo_clicked', {post_id: this.props.post.id, photo: this.props.post.photo.url})}
         url={this.props.post.photo.url}
         title={this.props.post.location.city + ", " + this.props.post.location.country}
         />

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'whatwg-fetch';
 import Comment from "./Comment";
 import CommentSubmit from "./CommentSubmit";
 
@@ -47,7 +46,10 @@ class Comments extends React.Component {
 		const button = this.state.expanded ? undefined : (
 			<button 
 				className='more-text'
-				onClick={()=>{this.setState({expanded:true})}}
+				onClick={()=>{
+					this.props.onExpand && this.props.onExpand();
+					this.setState({expanded:true});
+				}}
 				>{props.comments.length - this.numShow()} More Comment{props.comments.length - this.numShow() > 1 ? 's' : ''}</button>
 		);
 

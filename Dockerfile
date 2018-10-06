@@ -14,8 +14,11 @@ COPY *.py ./
 COPY posts posts
 RUN pip install -e git+https://github.com/jackdreilly/taxeedee_service#egg=taxeedee_service --src ./
 COPY templates templates
+COPY metrics metrics
 ENV STATIC_FOLDER static
 ENV CLIENT_ADDR server:50051
+ENV MONGO_HOST mongo
+ENV MONGO_PORT 27017
 ENV port 5000
 EXPOSE 5000
 ENTRYPOINT ["python"]

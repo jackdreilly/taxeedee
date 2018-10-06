@@ -26,7 +26,10 @@ class Photo extends React.Component {
   render() {
   	const props = this.props;
   	const className = this.clickable() ? "square-image clickable" : "square-image";
-  	const onClick = this.clickable() ? ()=> this.setState({isOpen: true, wasOpened: true}) : undefined;
+  	const onClick = this.clickable() ? ()=> {
+      this.props.onClick && this.props.onClick();
+      this.setState({isOpen: true, wasOpened: true});
+    } : undefined;
 		return (
 		  <div className="img">
   			<LazyLoad

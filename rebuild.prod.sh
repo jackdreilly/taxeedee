@@ -1,5 +1,7 @@
 export PROJECT_ID=taxeedee-212808
+cd backend
 docker-compose down -t 1
+cd ../
 gcloud builds submit --config cloudbuild.yaml
-docker pull gcr.io/$PROJECT_ID/taxeedee_html
-docker-compose up
+docker-compose pull
+docker-compose up --no-deps tweb
