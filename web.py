@@ -175,7 +175,8 @@ def add_post_comment():
     )
     post = client.get_post(post_id=request.get_json()['post_id'])
     send_email('new comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
-               (request.get_json()['post_id'], request.get_json()['name'], request.get_json()['comment']),)
+               (request.get_json()['post_id'], request.get_json()['name'], request.get_json()['comment']),
+               post_id=request.get_json()['post_id'])
     return _to_json(post)
 
 
@@ -188,7 +189,8 @@ def star_post():
         client.star_post(post_id=post_id)
     post = client.get_post(post_id=request.get_json()['post_id'])
     send_email('new star', 'http://taxeedee.com/post/%s' %
-               request.get_json()['post_id'])
+               request.get_json()['post_id'],
+               post_id=request.get_json()['post_id'])
     return _to_json(post)
 
 
@@ -206,7 +208,8 @@ def photo_clicked():
     metrics_client.photo_clicked(
         request.get_json()['post_id'], request.get_json()['photo'])
     send_email('photo clicked', 'http://taxeedee.com/post/%s \n%s' %
-               (request.get_json()['post_id'], request.get_json()['photo']),)
+               (request.get_json()['post_id'], request.get_json()['photo']),
+               post_id=request.get_json()['post_id'])
     return 'ok'
 
 
@@ -222,7 +225,8 @@ def post_expanded():
 def comments_expanded():
     metrics_client.comments_expanded(request.get_json()['post_id'])
     send_email('comment expanded', 'http://taxeedee.com/post/%s' %
-               request.get_json()['post_id'])
+               request.get_json()['post_id'],
+               post_id=request.get_json()['post_id'])
     return 'ok'
 
 
@@ -231,10 +235,12 @@ def post_clicked():
     metrics_client.post_clicked(request.get_json()['post_id'])
     return 'ok'
 
+
 @app.route('/metrics')
 def metrics():
     from metrics.report import render_report
     return render_report(client=client, metrics_client=metrics_client)
+
 
 def _host():
     return '0.0.0.0'
@@ -266,19 +272,20 @@ mail = Mail(app)
 from threading import Thread
 
 
-def send_email(title, body):
+def send_email(title, body, post_id=None):
     if 'DEV' in os.environ.get('TAXEEDEE_ENV', 'DEV'):
         return
 
-    def helper(flask_app, title, body):
+    def helper(flask_app, title, body, post_id):
         with flask_app.app_context():
+            title = '%s %s' % (title, client.get_post(post_id).title) if post_id else title
             msg = Message(
                 title,
                 sender='taxeedeetravels+alerts@gmail.com',
                 recipients=['taxeedeetravels+alerts@gmail.com'])
             msg.body = body
             mail.send(msg)
-    thr = Thread(target=helper, args=[app, title, body])
+    thr = Thread(target=helper, args=[app, title, body, post_id])
     thr.start()
 
 
