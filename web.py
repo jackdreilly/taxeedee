@@ -175,7 +175,8 @@ def add_post_comment():
     )
     post = client.get_post(post_id=request.get_json()['post_id'])
     send_email('new comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
-               (request.get_json()['post_id'], request.get_json()['name'], request.get_json()['comment']),
+               (request.get_json()['post_id'], request.get_json()[
+                'name'], request.get_json()['comment']),
                post_id=request.get_json()['post_id'])
     return _to_json(post)
 
@@ -278,7 +279,8 @@ def send_email(title, body, post_id=None):
 
     def helper(flask_app, title, body, post_id):
         with flask_app.app_context():
-            title = '%s %s' % (title, client.get_post(post_id).title) if post_id else title
+            title = '%s %s' % (title, client.get_post(
+                post_id).title) if post_id else title
             msg = Message(
                 title,
                 sender='taxeedeetravels+alerts@gmail.com',
