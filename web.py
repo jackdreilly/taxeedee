@@ -218,7 +218,8 @@ def photo_clicked():
 def post_expanded():
     metrics_client.post_expanded(request.get_json()['post_id'])
     send_email('post expanded', 'http://taxeedee.com/post/%s' %
-               request.get_json()['post_id'])
+               request.get_json()['post_id'],
+               post_id=request.get_json()['post_id'])
     return 'ok'
 
 
