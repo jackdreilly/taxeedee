@@ -5,9 +5,9 @@ function InstagramBanner(props) {
 		<a
 		  className="instagram-banner"		
 		  target="_blank" 
-		  href="http://instagram.com/taxeedee"
+		  href="http://instagram.com/taxeedee_travels"
 		  rel="noopener noreferrer"
-		  ><img alt="instragram logo" src="/images/instagram.png" />Follow us <span id="taxeedee-link">@taxeedee</span></a>
+		  ><img alt="instragram logo" src="/images/instagram.png" />Follow us <span id="taxeedee-link">@taxeedee_travels</span></a>
 		);
 }
 

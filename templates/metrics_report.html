@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Metrics</h1>
-{% for post_id, post in posts.iteritems() %}
+{% for post_id, post in posts %}
   <div class="post">
     <h2>{{post.post.title}}</h2>
     <img src="{{post.post.photo.url}}" />

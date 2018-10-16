@@ -18,4 +18,4 @@ def render_report(client, metrics_client):
     post_id_to_metric = {str(post['_id']): dict(post) for post in post_metrics}
     joined = {post_id: {'post': post, 'metrics': post_id_to_metric.get(
         post_id, None)} for post_id, post in post_id_to_post.iteritems()}
-    return render_template('metrics_report.html', posts=joined)
+    return render_template('metrics_report.html', posts=sorted(joined.items(), key=lambda a: a[1]['post']['timestamp'], reverse = True))

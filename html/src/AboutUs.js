@@ -58,7 +58,7 @@ Our plan is to:
             },            
             {
               paragraph: {
-                text: `For more travel photos you can also follow <a target="_blank" href='https://www.instagram.com/taxeedee/?hl=en'">our instagram</a> page.`
+                text: `For more travel photos you can also follow <a target="_blank" href='https://www.instagram.com/taxeedee_travels/?hl=en'">our instagram @taxeedee_travels</a>.`
               }
             }                             
           ]
