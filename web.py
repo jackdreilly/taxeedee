@@ -243,6 +243,10 @@ def metrics():
     from metrics.report import render_report
     return render_report(client=client, metrics_client=metrics_client)
 
+@app.route('/metrics.json')
+def metrics_json():
+    from metrics.report import post_metrics
+    return jsonify(post_metrics(client=client, metrics_client=metrics_client))
 
 def _host():
     return '0.0.0.0'
