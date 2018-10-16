@@ -6,7 +6,8 @@ import admin_utils
 from google.protobuf import json_format
 sys.path.append('server')
 from taxeedee_service import client as db_client
-
+from bson import json_util
+from metrics.report import post_metrics, render_report
 import time
 import random
 
@@ -240,13 +241,11 @@ def post_clicked():
 
 @app.route('/metrics')
 def metrics():
-    from metrics.report import render_report
     return render_report(client=client, metrics_client=metrics_client)
 
 @app.route('/metrics.json')
 def metrics_json():
-    from metrics.report import post_metrics
-    return jsonify(post_metrics(client=client, metrics_client=metrics_client))
+    return json_util.dumps(post_metrics(client=client, metrics_client=metrics_client), indent=2)
 
 def _host():
     return '0.0.0.0'
