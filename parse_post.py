@@ -14,9 +14,12 @@ def parse_url(line):
 			url, safe_url = map(lambda s: s.strip(), url.split(URL_DELIM))
 	return url, safe_url
 
+def parse_lat_lng(line):
+	return map(float, line.split(' '))
 
 def parse_unstructured_post(filename):
 	with open(filename,'r') as fn:
+		lat, lng = parse_lat_lng(fn.readline().strip())
 		url, safe_url = parse_url(fn.readline().strip())
 		title = fn.readline().strip()
 		city = fn.readline().strip()
@@ -29,6 +32,8 @@ def parse_unstructured_post(filename):
 			'city': city,
 			'country': country,
 			'structured_content': content,
+			'lat': lat,
+			'lng': lng,
 		}
 
 def parse_structured_post(filename):

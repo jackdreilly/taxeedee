@@ -33,6 +33,8 @@ def modify_content(client=None):
       post = title_to_post[title]
       post.structured_content.CopyFrom(new_post['structured_content'])
       post.photo.url = new_post['url']
+      post.location.position.lat = new_post['lat']
+      post.location.position.lng = new_post['lng']
       client.update_post(post)
       print 'updated post', post.id, post.title
       count+=1
