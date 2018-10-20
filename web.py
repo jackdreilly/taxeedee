@@ -107,6 +107,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 @app.route('/')
 @app.route('/about')
 @app.route('/guestbook')
+@app.route('/map')
 @app.route('/post/<id>')
 def root(*args, **kwargs):
     return app.send_static_file('index.html')

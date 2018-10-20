@@ -1,0 +1,11 @@
+.scroller {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 100%;
+  position: relative;
+}
+
+.scroller > div {
+  display: inline-block;
+}

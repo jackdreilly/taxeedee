@@ -1,0 +1,43 @@
+a > .map-post {
+  display: inline-block;
+}
+
+.map-post {
+  width: 10vw;
+  min-width: 7em;
+  height: 100%;
+  position: relative;
+  border: solid black 1px;
+  overflow: hidden;
+}
+
+.map-post .title {
+  padding: 1vh;
+  position: absolute;
+  background-color: #808080ad;
+  z-index: 1;
+  white-space: initial;
+}
+
+.map-post img {
+  height: 100%;
+  position: absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  width: auto;
+}
+
+.map-post.active .title {
+  background-color: #6d78ffb8;
+}
+
+.map-post button {
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  z-index: 2;
+  background-color: white;  
+}

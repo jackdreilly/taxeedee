@@ -11,6 +11,7 @@ function Dropdown(props) {
          <Link to="/">Home</Link><br />
          <Link to="/about">About Us</Link><br />
          <Link to="/guestbook">Guestbook</Link><br />
+         <Link to="/map">Map</Link><br />
       </span> 
     );
 }
