@@ -247,6 +247,19 @@ def metrics():
 def metrics_json():
     return jsonify(post_metrics(client=client, metrics_client=metrics_client))
 
+import get_timeline
+
+
+cache = {}
+
+@app.route('/timeline.json')
+def timeline_json():
+    if 'timeline' not in cache:
+        cache['timeline'] = jsonify({
+        'timeline': get_timeline.get_timeline(),
+    })
+    return cache['timeline']
+
 def _host():
     return '0.0.0.0'
 

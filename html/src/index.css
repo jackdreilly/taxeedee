@@ -253,7 +253,7 @@ textarea {
 }
 
 header h1 {
-  font-size: 4.5vw;
+  font-size: 4vw;
 }
 
 header a:hover {
@@ -336,7 +336,11 @@ header {
 @media only screen and (max-width:600px) {
   #dropdown {
     width: 55vw;
-    font-size: 10vw;
+  }
+
+  #dropdown .link-block {
+    font-size: 7vw;
+    padding-bottom: 3vw;
   }
 
 }

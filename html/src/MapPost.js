@@ -12,7 +12,7 @@ export default function Post(props) {
   if (url.includes("googleusercontent")) {
     url = url.replace(/w\d+$/, 'h200');
   }
-  const postButton = props.active ? <button>Read Post</button> : undefined;
+  const postButton = props.active ? <div class="button">Read Post</div> : undefined;
   const panel = (
     <div className={className} data-post-id={props.post.id} key={props.post.id} onClick={props.onClick}>
       <div className="title">{props.post.title}</div>
