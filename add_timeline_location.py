@@ -10,7 +10,7 @@ def process(line):
     return False
   bits = list(csv.reader([line.strip()]))[0]
   if len(bits) > 3:
-    return line
+    return bits
   if len(bits) < 3:
     raise Exception("Bad line: " + line)
   city, country, date = bits
