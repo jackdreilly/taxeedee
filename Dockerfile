@@ -19,6 +19,7 @@ RUN pip install -e git+https://github.com/jackdreilly/taxeedee_service#egg=taxee
 FROM serviced
 COPY *.py ./
 COPY posts posts
+COPY locations locations
 COPY templates templates
 COPY metrics metrics
 ENV STATIC_FOLDER static
