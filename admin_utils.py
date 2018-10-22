@@ -21,7 +21,7 @@ def parsed_posts():
 def add_all_posts(client=None):
   client = _or_default_client(client)
   for path in post_paths():
-    add_post(client, path)
+    add_post(path, client)
 
 def modify_content(client=None):
   client = _or_default_client(client)

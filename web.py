@@ -154,6 +154,11 @@ def add_post():
         return redirect('/')
     return render_template('add_post.html', paths=admin_utils.post_paths())
 
+@app.route('/add_all_posts')
+def add_all_posts():
+    admin_utils.clear_db(client=client)
+    admin_utils.add_all_posts(client=client)
+    return redirect('/')
 
 @app.route('/add_comment', methods=['POST'])
 def add_comment():
@@ -250,15 +255,20 @@ def metrics_json():
 import get_timeline
 
 
-cache = {}
+timeline_cache = {}
 
 @app.route('/timeline.json')
 def timeline_json():
-    if 'timeline' not in cache:
-        cache['timeline'] = jsonify({
-        'timeline': get_timeline.get_timeline(),
-    })
-    return cache['timeline']
+    if 'timeline' not in timeline_cache:
+        print 'building cache'
+        timeline_cache['timeline'] = jsonify({
+            'timeline': get_timeline.get_timeline(),
+            })
+        print timeline_cache
+    else:
+        print 'skipping cache'
+        pass
+    return timeline_cache['timeline']
 
 def _host():
     return '0.0.0.0'
