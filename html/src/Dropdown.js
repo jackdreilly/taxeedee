@@ -6,12 +6,15 @@ function Dropdown(props) {
   const style = {
     display: display
   };
+  function wrap(text) {
+    return <div className="link-block">{text}</div>;
+  }
   return (
       <span id="dropdown" style={style} onClick={props.onClick}>
-         <Link to="/">Home</Link><br />
-         <Link to="/about">About Us</Link><br />
-         <Link to="/guestbook">Guestbook</Link><br />
-         <Link to="/map">Map</Link><br />
+         <Link to="/">{wrap("Home")}</Link>
+         <Link to="/about">{wrap("About Us")}</Link>
+         <Link to="/guestbook">{wrap("Guestbook")}</Link>
+         <Link to="/map">{wrap("Mapeedee")}</Link>
       </span> 
     );
 }

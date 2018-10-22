@@ -12,6 +12,7 @@ class MapPanel extends Component {
     this.state = {
       active: undefined,
       posts: undefined,
+      timeline: undefined,
     };
   }
 
@@ -21,6 +22,9 @@ class MapPanel extends Component {
         posts.sort((a,b) => {return a.timestamp > b.timestamp ? -1 : 1});
         this.setState({posts});
     });
+    fetch('/timeline.json').then(response => response.json()).then(response => {
+      this.setState({timeline: response.timeline});
+    });
   }
 
   render() {
@@ -28,6 +32,7 @@ class MapPanel extends Component {
       return <div>Loading map posts...</div>
     }
     const posts = this.state.posts;
+    const timeline = this.state.timeline;
     const scroller = <HorizontalScroller 
             items={posts.map(post => {
               return <Post 
@@ -47,9 +52,10 @@ class MapPanel extends Component {
     const activeClass = this.state.active ? "active" : "inactive";
     return (
         <div id="map-panel">
-          <div id="map">
+          <div id="map" className={activeClass}>
             <Map 
               posts={posts}
+              timeline={timeline}
               active={this.state.active}
               onClick={id => {
                 this.setState({active: id});

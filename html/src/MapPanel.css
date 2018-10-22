@@ -10,13 +10,11 @@
 
 #map-panel #map {
   grid-column: 1;
-  grid-row: 1 / 3;
   position: relative;
 }
 
 #map-panel #posts {
   grid-column: 1;
-  grid-row: 3;
   position: relative;
 }
 
@@ -40,4 +38,12 @@
 
 #map-panel #posts.inactive {
   grid-row: 3;
+}
+
+#map-panel #map.inactive {
+  grid-row: 1 / 3;
+}
+
+#map-panel #map.active {
+  grid-row: 1 / 2;
 }
