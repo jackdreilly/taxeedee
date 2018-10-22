@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-import Humburger from "./Humburger";
-import Dropdown from './Dropdown';
-import Stream from './Stream';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import AboutUs from './AboutUs';
+import Dropdown from './Dropdown';
 import Guestbook from './Guestbook';
+import Humburger from './Humburger';
 import InstagramBanner from './InstagramBanner';
-
+import Stream from './Stream';
+import MapPanel from './MapPanel';
 import './index.css';
 
 class App extends React.Component {
@@ -42,9 +42,10 @@ class App extends React.Component {
             <Route exact path="/" component={Stream} />
             <Route path="/about" component={AboutUs} />
             <Route path="/guestbook" component={Guestbook} />
+            <Route path="/map" component={MapPanel} />
             <Route path="/post/:id" render={(props)=> {
               return <Stream post_id={props.match.params.id} />;
-            }} />   
+            }} />
         </main>             
         <footer>
           Ταξίδι: Greek for Travel

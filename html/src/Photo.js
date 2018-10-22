@@ -18,9 +18,7 @@ class Photo extends React.Component {
   }
 
   largeUrl() {
-  	const baseUrl = this.props.url.substring(0,this.props.url.length - 3);
-  	const url = `${baseUrl}1800`;
-    return url;
+    return this.props.url.replace(/[hw]\d+$/, 'w1800');
   }
 
   render() {
