@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 export PROJECT_ID=taxeedee-212808
 cd backend
-docker-compose pull
+docker-compose pull server
 docker-compose up -d
 cd ../
 virtualenv env
