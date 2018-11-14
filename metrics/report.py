@@ -1,4 +1,3 @@
-from taxeedee_service.client import Client
 import json
 from metrics import MetricsClient
 from google.protobuf import json_format
