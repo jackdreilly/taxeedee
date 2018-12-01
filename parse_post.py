@@ -1,8 +1,6 @@
 from taxeedee_service.taxeedee_pb2 import Content
 from more_itertools import peekable
-
-SECTION_DELIM = '### '
-URL_DELIM = ' @@@ '
+from constants import SECTION_DELIM, URL_DELIM
 
 def parse_post(filename):
 	return parse_structured_post(filename)
