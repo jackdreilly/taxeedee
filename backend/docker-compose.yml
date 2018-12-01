@@ -5,7 +5,6 @@ version: '3'
 services:
     mongo:
         image: mongo
-        env_file: ~/.env
         ports:
             - "27019:27017"
     mongo-express:

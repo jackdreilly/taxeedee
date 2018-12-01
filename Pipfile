@@ -1,0 +1,22 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+ipython = "*"
+
+[packages]
+googleapis-common-protos = "*"
+protobuf = "*"
+more-itertools = "*"
+Flask = "*"
+Flask-Mail = "*"
+requests = "*"
+
+[requires]
+python_version = "2.7"
+
+[scripts]
+migrate = 'python migrate/migrate.py'
+download = 'python migrate/migrate.py download'

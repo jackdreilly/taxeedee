@@ -3,17 +3,18 @@ import os
 import json
 import sys
 import admin_utils
-from google.protobuf import json_format
-from metrics.metrics import MetricsClient
-from metrics.report import post_metrics, render_report
+from google.protobuf.json_format import MessageToDict
 import time
 import random
 
 from comments.comments import CommentsClient
 from comments.posts import Posts
+from comments.metrics import MetricsClient
 
 comments_client = CommentsClient()
-posts_client = Posts()
+parsed_posts = admin_utils.parsed_posts()
+jsoned_posts = {v.id : MessageToDict(v, including_default_value_fields=True, preserving_proto_field_name=True) for v in parsed_posts}
+posts_client = Posts(jsoned_posts, comments_client)
 metrics_client = MetricsClient()
 
 
@@ -80,7 +81,7 @@ def myname():
 
 @app.route('/posts', methods=['GET'])
 def posts():
-    post_jsons = {'posts': posts_client.full_posts()}
+    post_jsons = {'posts': posts.full_posts()}
     print type(post_jsons.items()[0][1])
     if 'id' in request.args:
         post_id = request.args['id']
@@ -95,11 +96,10 @@ def posts():
     return json.dumps(post_jsons)
 
 
-
-
 @app.route('/comments', methods=['GET'])
 def comments():
     return jsonify({'comments': comments_client.guestbook_comments()})
+
 
 @app.route('/add_comment', methods=['POST'])
 def add_comment():
@@ -119,8 +119,8 @@ def add_post_comment():
     comments_client.add_comment(
         post_id,
         dict(
-        name=request.get_json()['name'],
-        comment=request.get_json()['comment'],
+            name=request.get_json()['name'],
+            comment=request.get_json()['comment'],
         ))
     post = posts_client.post(post_id)
     send_email('new comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
@@ -180,7 +180,8 @@ def post_clicked():
 
 @app.route('/metrics')
 def metrics():
-    return render_report(client=client, metrics_client=metrics_client)
+    return render_template('metrics_report.html', posts=metrics_client.post_metrics(posts_client.full_posts()))
+
 
 @app.route('/metrics.json')
 def metrics_json():
@@ -191,18 +192,20 @@ import get_timeline
 
 timeline_cache = {}
 
+
 @app.route('/timeline.json')
 def timeline_json():
     if 'timeline' not in timeline_cache:
         print 'building cache'
         timeline_cache['timeline'] = jsonify({
             'timeline': get_timeline.get_timeline(),
-            })
+        })
         print timeline_cache
     else:
         print 'skipping cache'
         pass
     return timeline_cache['timeline']
+
 
 def _host():
     return '0.0.0.0'
@@ -213,6 +216,9 @@ def _port():
 
 from flask_mail import Mail, Message
 
+email_password = None if os.environ.get(
+    "TAXEEDEE_ENV", "DEV") == "DEV" else os.environ['EMAIL_PASSWORD']
+
 app.config.update(
     DEBUG=True,
     # EMAIL SETTINGS
@@ -220,7 +226,7 @@ app.config.update(
     MAIL_PORT=465,
     MAIL_USE_SSL=True,
     MAIL_USERNAME='taxeedeetravels@gmail.com',
-    MAIL_PASSWORD=os.environ['EMAIL_PASSWORD'],
+    MAIL_PASSWORD=email_password,
 )
 mail = Mail(app)
 

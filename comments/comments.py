@@ -1,13 +1,12 @@
-import sqlite3
-import os
-from collections import defaultdict
 import json
+import os
+import sqlite3
+from collections import defaultdict
 
 
-def create_tables(conn):
+def create_tables(c):
     try:
         tables = [x for x, in list(c.execute("SELECT name FROM sqlite_master WHERE type='table'"))]
-        print tables
         if 'comments' in tables:
             return
         c.execute('''CREATE TABLE comments
@@ -43,12 +42,15 @@ class CommentsClient(object):
                 return comment
         return []
 
-    def add_guestbook_comment(self, comment):
-        return self.add_comment('guestbook', comment)
+    def add_guestbook_comment(self, comment,timestamp=None):
+        return self.add_comment('guestbook', comment, timestamp=timestamp)
 
-    def add_comment(self, item_id, comment):
+    def add_comment(self, item_id, comment, timestamp=None):
         cursor = self._cursor()
-        cursor.execute('insert into comments(item_id, comment) values (?, ?)', (item_id, json.dumps(comment)))
+        if not timestamp:
+            cursor.execute('insert into comments(item_id, comment) values (?, ?)', (item_id, json.dumps(comment)))
+        else:
+            cursor.execute('insert into comments(item_id, comment, timestamp) values (?, ?)', (item_id, json.dumps(comment), timestamp))
 
     def add_star(self, item_id):
         cursor = self._cursor()

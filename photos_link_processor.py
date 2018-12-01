@@ -1,5 +1,5 @@
 import requests
-import parse_post
+import constants
 import shutil
 import multiprocessing
 import re
@@ -24,11 +24,11 @@ def video_token(url):
   
 
 def processed(line):
-    if 'app.goo.gl' in line and parse_post.URL_DELIM not in line:
+    if 'app.goo.gl' in line and constants.URL_DELIM not in line:
         url = requests.get(
             'http://us-central1-taxeedee-212808.cloudfunctions.net/cloud?url=%s' % line.strip()).text.strip()
         print url
-        return parse_post.URL_DELIM.join((url, line))
+        return constants.URL_DELIM.join((url, line))
     video = video_token(line)
     if video:
       print video

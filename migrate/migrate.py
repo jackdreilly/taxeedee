@@ -1,6 +1,9 @@
 import requests
 import json
 
+import sys
+sys.path.append('../')
+
 from comments.comments import CommentsClient
 from comments.posts import Posts
 
@@ -25,8 +28,17 @@ def from_disk():
 def migrate():
     comments_client = CommentsClient()
     posts, guestbook, metrics = from_disk()
-    for comment in guestbook:
-        print comment
+    for comment in guestbook['comments']:
+        comments_client.add_guestbook_comment(comment, timestamp=comment['timestamp'])
+    for post in posts['posts']:
+        post_id = post['id']
+        for comment in post['comments']:
+            comments_client.add_comment(post_id, comment, timestamp=comment['timestamp'])
+    for metric in metrics:
+        print metric
 
-migrate()
-    
+if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 'download':
+        download()
+    else:
+        migrate()

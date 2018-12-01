@@ -1,11 +1,8 @@
-import admin_utils
-import comments
-from google.protobuf.json_format import MessageToDict
-
 class Posts(object):
 
-    def __init__(self):
-        self._posts = {v.id: MessageToDict(v) for v in admin_utils.parsed_posts()}
+    def __init__(self, posts, comments_client):
+        self._posts = posts
+        self.comments_client = comments_client
     
     def posts(self):
         return self._posts
@@ -17,29 +14,12 @@ class Posts(object):
 
     def full_posts(self):
         posts = self.posts()
-        c = comments.CommentsClient()
-        cs = c.comments()
-        stars = c.stars()
+        cs = self.comments_client.comments()
+        stars = self.comments_client.stars()
         full_posts = []
         for item_id, post in posts.iteritems():
             post = dict(post)
             post['stars'] = stars.get(item_id, 0)
             post['comments'] = cs.get(item_id, [])
             full_posts.append(post)
-        return sorted(full_posts, key = lambda x : x.get('timestamp',0), reverse = True)
-
-
-def main():
-    c = comments.CommentsClient()
-    c.add_star('Life in India: Traffic')
-    c.add_star('Life in India: Traffic')
-    c.add_star('Life in India: Traffic')
-    c.add_star('Life in India: Traffic')
-    c.add_comment('Life in India: Traffic', {'name': 'Jack', 'comment': 'comment'})
-    c.add_comment('Life in India: Traffic', {'name': 'Jack', 'comment': 'comment'})
-    print c.stars().get('Life in India: Traffic')
-    post = Posts().full_posts()[-1]
-    print post['stars'], post['comments']
-
-
-
+        return sorted(full_posts, key = lambda x : x['timestamp'], reverse = True)

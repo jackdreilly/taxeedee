@@ -1,5 +1,4 @@
 import requests
-import parse_post
 import shutil
 
 def add_location(file_name):
