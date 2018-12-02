@@ -47,18 +47,18 @@ def migrate():
                 post_id, comment, timestamp=comment['timestamp'])
         for _ in range(post.get('stars', 0)):
             comments_client.add_star(post_id)
-    for key, _metric in metrics:
-        metric = _metric['metrics']
-        post_id = _metric['post']['title']
-        for photo in metric.get('photo_clicked', []):
-            for _ in range(photo['views']):
-                metrics_client.photo_clicked(post_id, photo['url'])
-        for _ in range(metric.get('post_clicked', 0)):
-            metrics_client.post_clicked(post_id)
-        for _ in range(metric.get('post_expanded', 0)):
-            metrics_client.post_expanded(post_id)
-        for _ in range(metric.get('comments_expanded', 0)):
-            metrics_client.comments_expanded(post_id)
+    # for key, _metric in metrics:
+    #     metric = _metric['metrics']
+    #     post_id = _metric['post']['title']
+    #     for photo in metric.get('photo_clicked', []):
+    #         for _ in range(photo['views']):
+    #             metrics_client.photo_clicked(post_id, photo['url'])
+    #     for _ in range(metric.get('post_clicked', 0)):
+    #         metrics_client.post_clicked(post_id)
+    #     for _ in range(metric.get('post_expanded', 0)):
+    #         metrics_client.post_expanded(post_id)
+    #     for _ in range(metric.get('comments_expanded', 0)):
+    #         metrics_client.comments_expanded(post_id)
 
 def timestamps():
     posts, guestbook, metrics = from_disk()
