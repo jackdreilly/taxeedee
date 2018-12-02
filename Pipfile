@@ -18,7 +18,7 @@ requests = "*"
 python_version = "2.7"
 
 [scripts]
-migrate = 'python migrate/migrate.py'
+migrate = 'python migrate/migrate.py migrate'
 download = 'python migrate/migrate.py download'
-ts = 'python migrate/migrate.py ts'
+rebuild_db = './rebuild_db.sh'
 web = 'flask run'

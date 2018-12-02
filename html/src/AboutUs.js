@@ -9,7 +9,7 @@ function AboutUs(props) {
     expanded={true}
     posts={[
     {
-        structuredContent: {
+        structured_content: {
           nodes: [
             {
               paragraph: {
