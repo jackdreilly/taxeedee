@@ -4,3 +4,4 @@
 .Rhistory
 env/
 .vscode/
+.db/

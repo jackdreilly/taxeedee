@@ -2,7 +2,9 @@ version: '3'
 
 services:
   tweb:
-    image: "taxweb:latest"
+    build: "./"
     env_file: $HOME/.env
+    volumes:
+      - ".db:/app/.db"
     ports:
      - "5000:5000"

@@ -1,7 +1,5 @@
 FROM frolvlad/alpine-python2 as pipenved
 RUN pip install pipenv
-COPY Pipfile* ./
-RUN pipenv install
 
 FROM pipenved as npm_install
 RUN apk add --update nodejs
