@@ -1,5 +1,0 @@
-googleapis-common-protos
-protobuf
-flask>=1
-more-itertools==4.3.0
-Flask-Mail
