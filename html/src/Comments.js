@@ -46,7 +46,7 @@ class Comments extends React.Component {
 		const button = this.state.expanded ? undefined : (
 			<button 
 				className='more-text'
-				onClick={()=>{
+				onClick={() =>{
 					this.props.onExpand && this.props.onExpand();
 					this.setState({expanded:true});
 				}}

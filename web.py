@@ -3,7 +3,6 @@ import os
 import json
 import sys
 import admin_utils
-from google.protobuf.json_format import MessageToDict
 import time
 import random
 
@@ -12,8 +11,7 @@ from comments.posts import Posts
 from comments.metrics import MetricsClient
 
 comments_client = CommentsClient()
-parsed_posts = admin_utils.parsed_posts()
-jsoned_posts = {v.id : MessageToDict(v, including_default_value_fields=True, preserving_proto_field_name=True) for v in parsed_posts}
+jsoned_posts = admin_utils.json_posts()
 posts_client = Posts(jsoned_posts, comments_client)
 metrics_client = MetricsClient()
 
@@ -81,7 +79,7 @@ def myname():
 
 @app.route('/posts', methods=['GET'])
 def posts():
-    post_jsons = {'posts': posts.full_posts()}
+    post_jsons = {'posts': posts_client.full_posts()}
     print type(post_jsons.items()[0][1])
     if 'id' in request.args:
         post_id = request.args['id']
@@ -109,7 +107,7 @@ def add_comment():
         comment=request.get_json()['comment'],
     ))
     send_email('new guestbook comment', 'http://taxeedee.com/guestbook')
-    return jsonify(comments_client.guestbook_comments())
+    return jsonify({'comments':comments_client.guestbook_comments()})
 
 
 @app.route('/add_post_comment', methods=['POST'])

@@ -34,24 +34,23 @@ class MetricsClient(object):
             'insert into photo_clicked(post_id, photo) values (?, ?)', (post_id, photo))
 
     def post_clicked(self, post_id):
-        self._cursor().execute('insert into post_clicked(post_id) values (?)', (post_id))
+        self._cursor().execute('insert into post_clicked(post_id) values (?)', (post_id,))
 
     def post_expanded(self, post_id):
-        self._cursor().execute('insert into post_expanded(post_id) values (?)', (post_id))
+        self._cursor().execute('insert into post_expanded(post_id) values (?)', (post_id,))
 
     def comments_expanded(self, post_id):
-        self._cursor().execute('insert into comments_expanded(post_id) values (?)', (post_id))
+        self._cursor().execute('insert into comments_expanded(post_id) values (?)', (post_id,))
 
     def post_metrics(self, posts):
         post_metrics = self.dump()
         joined = {
-            post_id: {
+            post['title']: {
                 'post': post,
-                'metrics': post_metrics.get(post_id, None),
+                'metrics': post_metrics.get(post['title'], None),
             }
-            for post_id, post in posts.iteritems()
+            for post in posts
         }
-        print joined.values()[0]['post'].keys()
         return sorted(joined.items(), key=lambda a: a[1]['post']['timestamp'], reverse=True)
 
     def dump(self):

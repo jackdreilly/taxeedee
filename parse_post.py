@@ -16,6 +16,8 @@ def parse_post(filename):
     p.photo.url = post['url']
     if 'safe_url' in post and post['safe_url']:
         p.photo.safe_url = post['safe_url']
+    if post['timestamp']:
+        p.timestamp.FromJsonString(post['timestamp'])
     p.title = post['title']
     p.location.city = post['city']
     p.location.country = post['country']
@@ -40,13 +42,20 @@ def parse_lat_lng(line):
 
 def parse_unstructured_post(filename):
     with open(filename, 'r') as fn:
-        lat, lng = parse_lat_lng(fn.readline().strip())
+        line = fn.readline().strip()
+        timestamp = None
+        try:
+            lat, lng = parse_lat_lng(line)
+        except:
+            timestamp = line
+            lat, lng = parse_lat_lng(fn.readline().strip())
         url, safe_url = parse_url(fn.readline().strip())
         title = fn.readline().strip()
         city = fn.readline().strip()
         country = fn.readline().strip()
         content = fn.read()
         return {
+            'timestamp': timestamp,
             'url': url,
             'safe_url': safe_url,
             'title': title,

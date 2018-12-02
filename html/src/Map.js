@@ -1,6 +1,5 @@
 import React from 'react';
 import {Map, Polyline, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
-import {Link} from "react-router-dom";
 import './Map.css';
 import JsonMap from './JsonMap';
 import Interpolate from './Color';

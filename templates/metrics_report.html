@@ -18,10 +18,10 @@
         <div>Comments: {{post.post.comments|length or 0}}</div>                        
         <div class="photos">
           <h3>Photos Clicked</h3>
-          {% for photo in post['metrics']['photo_clicked'] %}
+          {% for url, views in post['metrics']['photo_clicked'].iteritems() %}
           <div class="photo">
-            <img src="{{photo.url}}" />
-            <div>Views: {{photo.views}}</div>
+            <img src="{{url}}" />
+            <div>Views: {{views}}</div>
           </div>
           {% endfor %}
         </div>

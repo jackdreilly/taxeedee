@@ -31,7 +31,7 @@ function ToNode(post, node, i) {
 
 function Content(props) {
   const isExpanded = props.expanded;
-  const allNodes = props.post.structuredContent.nodes;
+  const allNodes = props.post.structured_content.nodes;
   const nodes = isExpanded ? allNodes : allNodes.slice(0,1);
   return (<span className="content">{nodes.map((node, i) => ToNode(props.post, node, i))}</span>);
 }

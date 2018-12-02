@@ -25,7 +25,7 @@ var rgb2hsl = function(color) {
   var max = Math.max(r, g, b), min = Math.min(r, g, b);
   var h, s, l = (max + min) / 2;
 
-  if (max == min) {
+  if (max === min) {
     h = s = 0; // achromatic
   } else {
     var d = max - min;
@@ -34,6 +34,7 @@ var rgb2hsl = function(color) {
       case r: h = (g - b) / d + (g < b ? 6 : 0); break;
       case g: h = (b - r) / d + 2; break;
       case b: h = (r - g) / d + 4; break;
+      default: break;
     }
     h /= 6;
   }
@@ -44,7 +45,7 @@ var rgb2hsl = function(color) {
 var hsl2rgb = function(color) {
   var l = color[2];
 
-  if (color[1] == 0) {
+  if (color[1] === 0) {
     l = Math.round(l*255);
     return [l, l, l];
   } else {

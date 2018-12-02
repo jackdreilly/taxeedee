@@ -50,7 +50,7 @@ class CommentsClient(object):
         if not timestamp:
             cursor.execute('insert into comments(item_id, comment) values (?, ?)', (item_id, json.dumps(comment)))
         else:
-            cursor.execute('insert into comments(item_id, comment, timestamp) values (?, ?)', (item_id, json.dumps(comment), timestamp))
+            cursor.execute('insert into comments(item_id, comment, ts) values (?, ?, ?)', (item_id, json.dumps(comment), timestamp))
 
     def add_star(self, item_id):
         cursor = self._cursor()
