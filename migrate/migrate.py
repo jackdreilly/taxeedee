@@ -71,10 +71,14 @@ def timestamps():
     for filename in admin_utils.post_paths():
         print filename
         post = parse_post.parse_post(filename)
-        if post.timestamp:
+        if not post.timestamp:
             print 'skipping'
             continue
-        timestamp = ts[post.title]
+        try:
+            timestamp = ts[post.title]
+        except:
+            print 'failure', post.title
+            continue
         with open(filename,'r') as fn:
             x = fn.read()
         with open(filename, 'w') as fn:
