@@ -60,12 +60,35 @@ def migrate():
         for _ in range(metric.get('comments_expanded', 0)):
             metrics_client.comments_expanded(post_id)
 
+def timestamps():
+    posts, guestbook, metrics = from_disk()
+    ts = {
+        post['title']: post['timestamp']
+        for post in posts['posts']
+    }
+    import admin_utils
+    import parse_post
+    for filename in admin_utils.post_paths():
+        print filename
+        post = parse_post.parse_post(filename)
+        if post.timestamp:
+            print 'skipping'
+            continue
+        timestamp = ts[post.title]
+        with open(filename,'r') as fn:
+            x = fn.read()
+        with open(filename, 'w') as fn:
+            fn.write('%s\n' % timestamp)
+            fn.write(x)
+
 
 def main():
     if 'download' in sys.argv:
         download()
     if 'migrate' in sys.argv:
         migrate()
+    if 'timestamps' in sys.argv:
+        timestamps()
 
 if __name__ == '__main__':
     main()

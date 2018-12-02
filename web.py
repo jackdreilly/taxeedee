@@ -178,12 +178,11 @@ def post_clicked():
 
 @app.route('/metrics')
 def metrics():
-    return render_template('metrics_report.html', posts=metrics_client.post_metrics(posts_client.full_posts()))
+    return render_template(
+        'metrics_report.html', 
+        posts=metrics_client.post_metrics(posts_client.full_posts())
+    )
 
-
-@app.route('/metrics.json')
-def metrics_json():
-    return jsonify(post_metrics(client=client, metrics_client=metrics_client))
 
 import get_timeline
 
@@ -237,7 +236,7 @@ def send_email(title, body, post_id=None):
 
     def helper(flask_app, title, body, post_id):
         with flask_app.app_context():
-            title = '%s %s' % (title, client.get_post(
+            title = '%s %s' % (title, posts_client.post(
                 post_id).title) if post_id else title
             msg = Message(
                 title,
