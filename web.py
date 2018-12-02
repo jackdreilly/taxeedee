@@ -237,7 +237,7 @@ def send_email(title, body, post_id=None):
     def helper(flask_app, title, body, post_id):
         with flask_app.app_context():
             title = '%s %s' % (title, posts_client.post(
-                post_id).title) if post_id else title
+                post_id)['title']) if post_id else title
             msg = Message(
                 title,
                 sender='taxeedeetravels+alerts@gmail.com',
