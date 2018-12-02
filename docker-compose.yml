@@ -2,7 +2,7 @@ version: '3'
 
 services:
   tweb:
-    build: "./"
+    image: "gcr.io/$PROJECT_ID/taxeedee_html:latest"
     env_file: $HOME/.env
     volumes:
       - ".db:/app/.db"

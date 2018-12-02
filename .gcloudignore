@@ -1,0 +1,5 @@
+backend/
+html/build/
+html/node_modules/
+.git/
+env/
