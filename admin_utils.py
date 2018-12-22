@@ -12,7 +12,7 @@ def parsed_posts():
     return [post for post in posts if is_active(post)]
 
 def is_active(post):
-    return post.timestamp
+    return (str(post.timestamp))
 
 
 def json_posts():
