@@ -11,10 +11,18 @@ from comments.posts import Posts
 from comments.metrics import MetricsClient
 
 comments_client = CommentsClient()
-jsoned_posts = admin_utils.json_posts()
-posts_client = Posts(jsoned_posts, comments_client)
 metrics_client = MetricsClient()
 
+def create_posts_client():
+    jsoned_posts = admin_utils.json_posts()
+    return Posts(jsoned_posts, comments_client)
+
+posts_client = create_posts_client()
+
+def get_posts_client():
+    if os.environ.get('TAXEEDEE_ENV', 'DEV') == 'DEV':
+        return create_posts_client()
+    return posts_client
 
 class Username(object):
     """docstring for Username"""
@@ -79,7 +87,7 @@ def myname():
 
 @app.route('/posts', methods=['GET'])
 def posts():
-    post_jsons = {'posts': posts_client.full_posts()}
+    post_jsons = {'posts': get_posts_client().full_posts()}
     print type(post_jsons.items()[0][1])
     if 'id' in request.args:
         post_id = request.args['id']
@@ -120,7 +128,7 @@ def add_post_comment():
             name=request.get_json()['name'],
             comment=request.get_json()['comment'],
         ))
-    post = posts_client.post(post_id)
+    post = get_posts_client().post(post_id)
     send_email('new comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
                (post_id, request.get_json()[
                 'name'], request.get_json()['comment']),
@@ -135,7 +143,7 @@ def star_post():
     if not star_session.already_starred(post_id):
         star_session.star_post(post_id)
         comments_client.add_star(post_id)
-    post = posts_client.post(post_id)
+    post = get_posts_client().post(post_id)
     send_email('new star', 'http://taxeedee.com/post/%s' %
                request.get_json()['post_id'],
                post_id=request.get_json()['post_id'])
@@ -180,7 +188,7 @@ def post_clicked():
 def metrics():
     return render_template(
         'metrics_report.html', 
-        posts=metrics_client.post_metrics(posts_client.full_posts())
+        posts=metrics_client.post_metrics(get_posts_client().full_posts())
     )
 
 
@@ -236,7 +244,7 @@ def send_email(title, body, post_id=None):
 
     def helper(flask_app, title, body, post_id):
         with flask_app.app_context():
-            title = '%s %s' % (title, posts_client.post(
+            title = '%s %s' % (title, get_posts_client().post(
                 post_id)['title']) if post_id else title
             msg = Message(
                 title,

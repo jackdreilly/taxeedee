@@ -20,7 +20,7 @@ def json_posts():
         v.id: MessageToDict(
             v,
             including_default_value_fields=True,
-            preserving_proto_field_name=True
+            preserving_proto_field_name=True,
         )
         for v in parsed_posts()
     }
