@@ -100,6 +100,7 @@ def parse_structured_post(filename):
         if header == 'paragraph':
             node.paragraph.text = '\n'.join(lines)
         elif header == 'photo':
+            # print lines
             url, title = lines
             url, safe_url = parse_url(url)
             node.photo.url = url.strip()
