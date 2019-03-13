@@ -5,6 +5,7 @@
   "dependencies": {
     "dompurify": "^1.0.7",
     "google-maps-react": "^2.0.2",
+    "history": "^4.7.2",
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -12,6 +13,7 @@
     "react-lazyload": "^2.3.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-search-box": "^2.0.1",
     "react-textarea-autosize": "^7.0.4",
     "whatwg-fetch": "^2.0.4"
   },

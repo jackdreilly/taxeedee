@@ -29,7 +29,7 @@ class App extends React.Component {
               <h1>Taxeedee: 
                 <span id="subtitle">Travels of Olga and Jack</span>
               </h1>
-            </Link>      
+            </Link>
           </div>
         </header>
 

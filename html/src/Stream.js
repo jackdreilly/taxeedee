@@ -1,6 +1,7 @@
 import React from 'react';
 import 'whatwg-fetch';
 import Post from './Post';
+import Search from './Search';
 
 class Stream extends React.Component {
   constructor(props) {
@@ -25,6 +26,12 @@ class Stream extends React.Component {
     if (this.state.posts.length === 0) {
       return (<div className="loading">Loading Posts...</div>);
     }
+    let search = this.props.post_id === undefined ? <Search 
+          posts={this.state.posts}
+          onSelect={post => {
+            this.props.history.push('/post/' + post.key);
+          }}
+          /> : null;
     const posts = this.state.posts.map((post, i)=> {
       const link = post.id === undefined ? undefined : `/post/${post.id}`;
       return (
@@ -41,6 +48,7 @@ class Stream extends React.Component {
     });
     return (
       <div id="stream">
+      {search}
       {posts}
       </div>
     );

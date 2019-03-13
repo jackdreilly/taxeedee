@@ -397,6 +397,7 @@ h3.comments-header {
   text-decoration: none;
   color: black;
   border-radius: 0 0 0 10px;
+  box-sizing: unset;
 }
 
 .instagram-banner:hover {
