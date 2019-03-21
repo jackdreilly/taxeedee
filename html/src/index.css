@@ -164,6 +164,10 @@ footer {
   color:gray;
 }
 
+.read-section:hover p{
+  color: gray;
+}
+
 #subtitle {
   font-style: italic;
 }
@@ -395,11 +399,14 @@ h3.comments-header {
   padding-bottom: 10px;
   font-style: italic;
   height: 1.35em;
+  width: 250px;
   display: block;
   text-decoration: none;
   color: black;
-  border-radius: 0 0 0 10px;
+  border-radius: 10px 10px 10px 10px;
   box-sizing: unset;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .instagram-banner:hover {

@@ -116,7 +116,13 @@ class Post extends React.Component {
         />
       {stars}
       <div className="text-container read-more-container">
-        <div className="text read-section">
+        <div className="text read-section" 
+            onClick={
+              () => {
+                sendMetric('post_expanded', {post_id: this.props.post.id});
+                this.setState({expanded : true});
+              }
+            }>
           {content}
         </div>
         {readMoreButton}
