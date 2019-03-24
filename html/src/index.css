@@ -164,7 +164,7 @@ footer {
   color:gray;
 }
 
-.read-section:hover p{
+.read-section.not-expanded:hover p{
   color: gray;
 }
 
