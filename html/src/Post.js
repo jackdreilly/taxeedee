@@ -55,6 +55,7 @@ class Post extends React.Component {
         />
       ) : undefined;
 
+
   const stars = (this.props.enableStars === undefined || this.props.enableStars) ? (
           <Stars
         numStars={this.state.stars}
