@@ -326,7 +326,7 @@ header {
 
 @media screen and (min-width:1000px) {
   header h1 {
-    font-size: 50px;
+    font-size: 45px;
   }
 
   .post h2 {
@@ -349,7 +349,7 @@ header {
   }
 
   header h1 {
-    font-size: 3.4vw;
+    font-size: 3.5vw;
 }
 
   #dropdown .link-block {
