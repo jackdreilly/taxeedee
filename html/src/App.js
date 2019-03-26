@@ -4,7 +4,7 @@ import AboutUs from './AboutUs';
 import Dropdown from './Dropdown';
 import Guestbook from './Guestbook';
 import Humburger from './Humburger';
-import InstagramBanner from './InstagramBanner';
+import InstagramIMG from './insta';
 import Stream from './Stream';
 import MapPanel from './MapPanel';
 import './index.css';
@@ -31,6 +31,7 @@ class App extends React.Component {
               </h1>
             </Link>
           </div>
+          <InstagramIMG/>
         </header>
 
         <main>        
@@ -38,7 +39,6 @@ class App extends React.Component {
             active={this.state.dropdownActive}
             onClick={() => this.setState({dropdownActive: false})}
           />
-            <InstagramBanner/>
             <Route exact path="/" component={Stream} />
             <Route path="/about" component={AboutUs} />
             <Route path="/guestbook" component={Guestbook} />
