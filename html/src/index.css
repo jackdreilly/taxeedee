@@ -255,6 +255,7 @@ textarea {
   padding-right: 5px;
   padding-top: 5px;
   box-shadow: #bdbdbc 2px 2px 8px 0px;
+  cursor: pointer;
 }
 
 .star-post-button.starred{
