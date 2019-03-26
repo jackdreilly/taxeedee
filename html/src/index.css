@@ -337,6 +337,10 @@ header {
     max-width: 120px;
   }
 
+  #instagram-img img{
+    max-width: 35px;  
+  }
+
 }
 
 @media only screen and (max-width:600px) {
@@ -344,9 +348,17 @@ header {
     width: 55vw;
   }
 
+  header h1 {
+    font-size: 3.4vw;
+}
+
   #dropdown .link-block {
     font-size: 7vw;
     padding-bottom: 3vw;
+  }
+
+  #instagram-img img{
+    max-width: 30px;
   }
 
 }
@@ -389,13 +401,25 @@ h3.comments-header {
   text-shadow: 1px 1px #2b2b2b;
 }
 
+#instagram-img {
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center;
+
+}
+
+#instagram-img img {
+  width: 100%;
+  margin-right: 10px;
+}
+
 .instagram-banner {
   background-color: white;
-  border-style: none none solid none;
-  border-width: 2px;
+  border-style: solid;
+  border-width: 1px;
   border-color: gray;
   padding-left: 15px;
-  padding-top: 10px;
+  padding-top: 6px;
   padding-bottom: 10px;
   font-style: italic;
   height: 1.35em;
@@ -407,6 +431,8 @@ h3.comments-header {
   box-sizing: unset;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1px;
+  box-shadow: #4e5b82 2px 2px 8px 0px;
 }
 
 .instagram-banner:hover {
