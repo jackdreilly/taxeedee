@@ -56,7 +56,7 @@ main {
   width: 30vw;
   padding: 10px;
   background-color: #000;
-  font-size: 4vw;
+  font-size: 3vw;
   color: white;
   border-style: none solid solid none;
   border-color: gray;
@@ -348,6 +348,10 @@ header {
   background-color: white;
 }
 
+.link-block {
+  padding-bottom: 10px;
+}
+
 @media screen and (min-width:1000px) {
   header h1 {
     font-size: 45px;
@@ -377,8 +381,8 @@ header {
 }
 
   #dropdown .link-block {
-    font-size: 7vw;
-    padding-bottom: 3vw;
+    font-size: 6vw;
+    
   }
 
   #instagram-img img{
