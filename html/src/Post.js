@@ -21,14 +21,17 @@ class Post extends React.Component {
     }
   }
 
+  expandPost = () => {
+    sendMetric('post_expanded', {post_id: this.props.post.id});
+    this.setState({expanded : true});
+  }
+
+
   render() {
     const readMoreButton = this.state.expanded ? undefined : (
         <button 
         className="more-text"
-        onClick={() => {
-      sendMetric('post_expanded', {post_id: this.props.post.id});
-      this.setState({expanded : true});
-        }}
+        onClick={this.expandPost}
         >Read More</button>
       );
     const content = (<Content post={this.props.post} expanded={this.state.expanded} />);
@@ -120,10 +123,7 @@ class Post extends React.Component {
       <div className="text-container read-more-container">
         <div className={textClasses}
             onClick={
-              () => {
-                sendMetric('post_expanded', {post_id: this.props.post.id});
-                this.setState({expanded : true});
-              }
+              this.expandPost
             }>
           {content}
         </div>
