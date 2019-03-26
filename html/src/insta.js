@@ -7,7 +7,9 @@ function InstagramIMG(props) {
 		  target="_blank" 
 		  href="http://instagram.com/taxeedee_travels"
 		  rel="noopener noreferrer"
-		  ><img alt="instragram logo" src="/images/ig-logo.png" /></a>
+		  >
+		  <img alt="instragram logo" src="/images/ig-logo.png" />
+		</a>
 		);
 }
 
