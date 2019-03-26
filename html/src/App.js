@@ -4,7 +4,6 @@ import AboutUs from './AboutUs';
 import Dropdown from './Dropdown';
 import Guestbook from './Guestbook';
 import Humburger from './Humburger';
-import InstagramBanner from './InstagramBanner';
 import InstagramIMG from './insta';
 import Stream from './Stream';
 import MapPanel from './MapPanel';
