@@ -5,6 +5,7 @@ import sys
 import admin_utils
 import time
 import random
+import urllib
 
 from comments.comments import CommentsClient
 from comments.posts import Posts
@@ -114,7 +115,7 @@ def add_comment():
         name=request.get_json()['name'],
         comment=request.get_json()['comment'],
     ))
-    send_email('new guestbook comment', 'http://taxeedee.com/guestbook')
+    send_email('new guestbook comment', 'http://taxeedee.com/guestbook', ip=ip(request))
     return jsonify({'comments':comments_client.guestbook_comments()})
 
 
@@ -132,7 +133,7 @@ def add_post_comment():
     send_email('new comment', 'http://taxeedee.com/post/%s \n%s\n%s' %
                (post_id, request.get_json()[
                 'name'], request.get_json()['comment']),
-               post_id=post_id)
+               post_id=post_id , ip=ip(request))
     return jsonify(post)
 
 
@@ -146,7 +147,7 @@ def star_post():
     post = get_posts_client().post(post_id)
     send_email('new star', 'http://taxeedee.com/post/%s' %
                request.get_json()['post_id'],
-               post_id=request.get_json()['post_id'])
+               post_id=request.get_json()['post_id'], ip=ip(request))
     return jsonify(post)
 
 
@@ -156,7 +157,7 @@ def photo_clicked():
         request.get_json()['post_id'], request.get_json()['photo'])
     send_email('photo clicked', 'http://taxeedee.com/post/%s \n%s' %
                (request.get_json()['post_id'], request.get_json()['photo']),
-               post_id=request.get_json()['post_id'])
+               post_id=request.get_json()['post_id'], ip=ip(request))
     return 'ok'
 
 
@@ -165,7 +166,7 @@ def post_expanded():
     metrics_client.post_expanded(request.get_json()['post_id'])
     send_email('post expanded', 'http://taxeedee.com/post/%s' %
                request.get_json()['post_id'],
-               post_id=request.get_json()['post_id'])
+               post_id=request.get_json()['post_id'], ip=ip(request))
     return 'ok'
 
 
@@ -174,7 +175,7 @@ def comments_expanded():
     metrics_client.comments_expanded(request.get_json()['post_id'])
     send_email('comment expanded', 'http://taxeedee.com/post/%s' %
                request.get_json()['post_id'],
-               post_id=request.get_json()['post_id'])
+               post_id=request.get_json()['post_id'], ip=ip(request))
     return 'ok'
 
 
@@ -237,17 +238,32 @@ mail = Mail(app)
 
 from threading import Thread
 
+def ip(request):
+    return request.remote_addr
 
-def send_email(title, body, post_id=None):
-    if 'DEV' in os.environ.get('TAXEEDEE_ENV', 'DEV'):
+ip_api_key = 'adaa921b2b27c0db504edc8ecaed32b7d43816d65bd574a19387ae16f61b2e38'
+
+def location(ip):
+    if not ip:
+        return 'unknown'
+    try:
+        return urllib.urlopen('http://api.ipinfodb.com/v3/ip-city/?key=%s&ip=%s' % (ip_api_key,ip)).read()
+    except:
+        return 'Could not look up location'
+
+
+def send_email(title, body, post_id=None, ip=None):
+    if 'DEV' in os.environ.get('TAXEEDEE_ENV', 'DEV') and False:
         return
 
     def helper(flask_app, title, body, post_id):
         with flask_app.app_context():
+            body = body + '\n\n' + location(ip)
+            print body
             title = '%s %s' % (title, get_posts_client().post(
                 post_id)['title']) if post_id else title
             msg = Message(
-                title,
+                '%s from %s' % (title, location(ip)),
                 sender='taxeedeetravels+alerts@gmail.com',
                 recipients=['taxeedeetravels+alerts@gmail.com'])
             msg.body = body
