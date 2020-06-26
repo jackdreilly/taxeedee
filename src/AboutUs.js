@@ -7,6 +7,7 @@ function AboutUs(props) {
       enableComments={false}
       enableStars={false}
       expanded={true}
+      disableSearch={true}
       posts={[
         {
           structured_content: {

@@ -65,7 +65,7 @@ class Stream extends React.Component {
       return <div className="loading">Loading Posts...</div>;
     }
     let search =
-      this.props.post_id === undefined ? (
+      this.props.post_id === undefined && !this.props.disableSearch ? (
         <Search
           posts={this.state.posts}
           onSelect={(post) => {
