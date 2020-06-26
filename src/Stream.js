@@ -51,10 +51,10 @@ class Stream extends React.Component {
       stars.forEach((c) =>
         m.has(c.post.path) ? m.get(c.post.path).stars.push(c) : null
       );
-      const results = Array.from(m.values());
+      let results = Array.from(m.values());
       results.sort((a, b) => a.timestamp > b.timestamp);
       if (this.props.post_id) {
-        results.filter((d) => d.id === this.props.post_id);
+        results = results.filter((d) => d.id === this.props.post_id);
       }
       this.setState({ posts: results });
     });
