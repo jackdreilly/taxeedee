@@ -182,5 +182,5 @@ export class PostMap extends React.Component {
 }
  
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyCEbW8Q_FwFdh8RqHfb0lJmC7jHTkdnmK4')
+  apiKey: ('AIzaSyCG8gjOkOPOU4zGLypA0CKM1-jgq3c8FVs')
 })(PostMap)
